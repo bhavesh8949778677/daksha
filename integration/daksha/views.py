@@ -102,4 +102,21 @@ def activate_account(request, uidb64, token):
 def Dashboard(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
-    return render(request, "daksha/Dashboard.html")
+    return render(request, "daksha/Dashboard.html",{
+        'username' : request.user.username,
+        'email': request.user.email
+    })
+def Projects(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    return render(request, "daksha/Projects.html",{
+        'username' : request.user.username,
+        'email': request.user.email
+    })
+def Hackathons(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    return render(request, "daksha/Hackathons.html",{
+        'username' : request.user.username,
+        'email': request.user.email
+    })
