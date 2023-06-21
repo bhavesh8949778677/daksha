@@ -134,3 +134,6 @@ EMAIL_HOST_USER = 'hiringdaksha@gmail.com'
 EMAIL_HOST_PASSWORD = 'lrxwtneyicwlyhrr'
 
 ALLOWED_HOSTS =[]
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

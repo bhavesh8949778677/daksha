@@ -10,6 +10,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage, get_connection,send_mail
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from .models import Project
+
 
 class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -109,9 +111,11 @@ def Dashboard(request):
 def Projects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    projects = Project.objects.all()
     return render(request, "daksha/Projects.html",{
         'username' : request.user.username,
-        'email': request.user.email
+        'email': request.user.email,
+        'projects': projects,
     })
 def Hackathons(request):
     if not request.user.is_authenticated:
