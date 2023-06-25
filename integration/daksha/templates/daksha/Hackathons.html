@@ -115,7 +115,7 @@
               <a href="/Hackathons" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">Hackathons</a>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-700">
-              <div class="flex justify-between px-5">
+              <div class="lg:flex md:flex lg:justify-between md:justify-between sm:flex-col px-5 ">
                 <div class="flex items-center px-5"><div class="flex-shrink-0">
                   <img class="h-10 w-10 rounded-full" src="https://www.healthepro.com/wp-content/uploads/2021/03/Staffing-Icon-480x480.png" alt="">
                 </div>
@@ -153,12 +153,38 @@
           </div>
         </nav>
       </div>
-      <section class="pt-16">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div class="px-4 sm:px-0">
-            <h1 class="text-2xl font-semibold text-gray-900 text-center">Hackathons</h1>
-          </div>
-        </div>
+      <section class="pt-10">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-0">
+          <div class="sm:px-0">
+            <div class=" text-white">
+              <div id="hackathons" name="support" class="relative w-full my-10">
+                <div class="w-full h-[700px] bg-gray-900/90 absolute">
+                  <img class="w-full -z-10 h-full object-cover mix-blend-overlay" src="{% static 'daksha/assets/nat-10.jpg' %}" alt="/" />
+                </div>
+                <div class="max-w-[1240px] mx-auto text-white relative">
+                  <div class="px-4 py-12">
+                    <h2 class="text-2xl pt-8 text-gray-300 uppercase text-center">Hackathons</h2>
+                    <div class="lg:w-1/2 mx-auto sm:w-2/3"></div>
+                  </div>
+                  <div class="flex justify-center items-center">
+                    <div class="flex flex-col justify-center items-center">
+                      <div class="flex flex-col md:flex-row w-2/3 rounded-lg shadow-lg overflow-hidden justify-center items-center">
+                        <!-- images -->
+                        <div class="w-full md:w-1/3 mt-8 md:mt-0 order-2 md:order-1 hidden md:block">
+                          <img src="{% static 'daksha/assets/Hackathon.png' %}" alt="Card" class="h-full object-cover object-center bg-fixed" />
+                        </div>
+                        <div class="w-full md:w-2/3 bg-gray-100 p-12 order-1 md:order-2">
+                          <div class="p-4">
+                            <h2 class="text-xl text-gray-700 font-bold mb-2">Hackathon is Live!</h2>
+                            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec metus vel mauris eleifend fermentum ac at tellus.</p>
+                            <button class="mt-4 bg-indigo-600 hover:bg-indigo-500 hover:text-white text-white font-semibold py-2 px-4 rounded">Download </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
       </section>
     </div>
     

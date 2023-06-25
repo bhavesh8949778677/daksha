@@ -114,17 +114,18 @@
               <a href="/Projects" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
               <a href="/Hackathons" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Hackathons</a>
             </div>
+            
             <div class="pt-4 pb-3 border-t border-gray-700">
-              <div class="flex justify-between px-5">
-                <div class="flex items-center px-5"><div class="flex-shrink-0">
+              <div class="lg:flex md:flex lg:justify-between md:justify-between sm:flex-col px-5">
+                <div class="flex items-center lg:px-5 md:px-5 sm:px-0 sm:mb-4"><div class="flex-shrink-0">
                   <img class="h-10 w-10 rounded-full" src="https://www.healthepro.com/wp-content/uploads/2021/03/Staffing-Icon-480x480.png" alt="">
-                </div>
+              </div>
 
                 <div class="ml-3">
                   <div class="text-base font-medium leading-none text-white">{{username}}</div>
                   <div class="text-sm font-medium leading-none text-gray-400">{{email}}</div>
-                </div></div>
-                
+                </div>
+              </div> 
                 <div class="relative mr-4">
                     <button class="flex max-w-xs items-center rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 mobile-notification-button">
                       <span class="sr-only">Open user menu</span>
@@ -153,16 +154,25 @@
           </div>
         </nav>
       </div>
-      <section class="pt-16">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div class="px-4 sm:px-0">
-            <h1 class="text-2xl font-semibold text-gray-900 text-center">Projects</h1>
-          </div>
+      <section class="pt-10">
+        <div class="mx-auto max-w-7xl sm:px-6 px-0">
+  <div class="px-4 sm:px-0">
+    <div id="projects" name="projects" class="w-full mt-30">
+      <div class="max-w-[1240px] mx-auto py-12">
+        <div class="text-center py-8 text-gray-900">
+          <h2 class="text-2xl uppercase">Projects</h2>
         </div>
+        <div id="projectContainer" class="grid md:mx-5 md:grid-cols-1 lg:grid-cols-3 gap-8 py-10">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
       </section>
     </div>
     
-    <script src="{% static 'daksha/dashboard.js' %}"> 
+    <script src="{% static 'daksha/projects.js' %}"> 
     </script>
   </body>
 </html>
