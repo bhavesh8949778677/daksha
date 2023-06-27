@@ -131,7 +131,7 @@ function createProjectCard(project) {
 
   const category = document.createElement("span");
   category.className = "uppercase px-3 py-1 bg-indigo-200 text-indigo-900 rounded-2xl text-sm";
-  category.textContent = project.category;
+  category.textContent = project.duration;
   card.appendChild(category);
 
   const title = document.createElement("div");
@@ -140,7 +140,7 @@ function createProjectCard(project) {
 
   const description = document.createElement("p");
   description.className = "text-xl py-8";
-  description.textContent = project.description;
+  description.textContent = project.skills_req;
   card.appendChild(description);
 
   const points = document.createElement("div");
@@ -160,9 +160,13 @@ function createProjectCard(project) {
 
   const button = document.createElement("button");
   button.className = "w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md";
-  button.textContent = "Download project";
+  button.textContent = "View project";
   card.appendChild(button);
-
+  button.addEventListener("click", function() {
+    // Replace "url" with the actual URL you want to redirect to
+    const url = `/${project.title}/view`;
+    window.location.href = url;
+  });
   return card;
 }
 
@@ -180,8 +184,8 @@ function populateProjectCards(projectsData) {
 fetch('/ProjectsData')
   .then(response => response.json())
   .then(projectsData => {
-    console.log(projectsData);
-    // populateProjectCards(projectsData);
+    // console.log(projectsData);
+    populateProjectCards(projectsData);
   })
   .catch(error => {
     console.error('Error fetching projects data:', error);

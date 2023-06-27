@@ -13,4 +13,5 @@ urlpatterns = [
     path("Projects", views.Projects, name="Projects"),
     path("Hackathons", views.Hackathons, name="Hackathons"),
     path("ProjectsData", views.projectsData, name= "Projects Data"),
+    path("<str:title>/view", views.showProject, name = "Show Project"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

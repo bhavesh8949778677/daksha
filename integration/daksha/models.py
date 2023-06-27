@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Point(models.Model):
     name = models.CharField(max_length=255, default = "Python")
@@ -18,3 +19,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Submission(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete = models.CASCADE)
+    files = models.FileField(upload_to='submissions/zip_files/')
+
+    def __str__(self):
+        return f"Submission by {self.user.username} of {self.project.title}"

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
@@ -10,7 +11,16 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage, get_connection,send_mail
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from .models import Project
+from .models import Project, Submission, Point
+from django import forms
+from django.core import serializers
+import json
+
+
+class SubmissionForm(forms.ModelForm):
+    class Meta:
+        model = Submission
+        fields = ('project', 'files')
 
 
 class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
@@ -27,11 +37,23 @@ def index(request):
 
 def projectsData(request):
     projects = Project.objects.all()
-    print(projects)
-    data = [{'title': project.title,'duration': project.duration,'skills_req': project.skills_req,
-    'credits': project.credits,'pdf': project.pdf.url, 'image': project.image.url } for project in projects]
-    print(data)
-    return JsonResponse(data, safe=False)
+    project_data = []
+    
+    for project in projects:
+        points = [point.name for point in project.points.all()]
+        project_dict = {
+            # 'id': project.pk,
+            'title': project.title,
+            'duration': project.duration,
+            'skills_req': project.skills_req,
+            'credits': project.credits,
+            # 'pdf': project.pdf.url,
+            # 'image': project.image.url,
+            'points': points
+        }
+        project_data.append(project_dict)
+
+    return JsonResponse(project_data, safe=False)
 
 def login_view(request):
     if request.method == "POST":
@@ -134,3 +156,19 @@ def Hackathons(request):
         'username' : request.user.username,
         'email': request.user.email
     })
+
+
+
+@login_required
+def showProject(request,title):
+    if request.method == 'POST':
+        return render(request, 'daksha/view_project.html')
+    else:
+        form = SubmissionForm()
+    return render(request, 'daksha/view_project.html')
+
+
+# @login_required
+# def view_submissions(request, ProjectName):
+#     submissions = Submission.objects.filter(user=request.user, project__title=ProjectName)
+#     return render(request, 'view_submissions.html', {'submissions': submissions})

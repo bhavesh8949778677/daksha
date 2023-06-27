@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Project - MUSIC PLAYER</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    .project-details {
+      margin-bottom: 30px;
+    }
+
+    .project-details p {
+      margin: 0;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    .project-details ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: #666;
+    }
+
+    .project-actions {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .project-actions button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    .project-actions button:hover {
+      background-color: #0056b3;
+    }
+
+    .latest-submission {
+      font-weight: bold;
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MUSIC PLAYER</h1>
+
+    <div class="project-details">
+      <p><strong>SKILLS REQUIRED:</strong> {{ project.skills_req }}</p>
+      <p><strong>CREDITS:</strong> LEVEL:{{ project.credits }} DURATION:{{ project.duration }}</p>
+      <p><strong>WHAT YOU’LL LEARN:</strong></p>
+      <ul>
+        {% for point in project.points.all %}
+          <li>{{ point.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="project-actions">
+      <button id="download-pdf">Download PDF</button>
+      <form action="/submit-zip" method="POST" enctype="multipart/form-data">
+        <input type="file" name="zip-file" required>
+        <button type="submit">Submit ZIP File</button>
+      </form>
+    </div>
+
+    <div class="latest-submission">
+      <p>Latest Submission: <a href="/submissions/latest">Download ZIP</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Add event listener to the "Download PDF" button
+    document.getElementById("download-pdf").addEventListener("click", function() {
+      // Replace "pdf-url" with the actual URL of the PDF file to be downloaded
+      const pdfUrl = "https://example.com/path/to/pdf";
+      window.location.href = pdfUrl;
+    });
+  </script>
+</body>
+</html>
