@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User
@@ -21,7 +21,17 @@ account_activation_token = AccountActivationTokenGenerator()
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("Dashboard"))
     return render(request, "daksha/index.html")
+
+def projectsData(request):
+    projects = Project.objects.all()
+    print(projects)
+    data = [{'title': project.title,'duration': project.duration,'skills_req': project.skills_req,
+    'credits': project.credits,'pdf': project.pdf.url, 'image': project.image.url } for project in projects]
+    print(data)
+    return JsonResponse(data, safe=False)
 
 def login_view(request):
     if request.method == "POST":
@@ -115,7 +125,7 @@ def Projects(request):
     return render(request, "daksha/Projects.html",{
         'username' : request.user.username,
         'email': request.user.email,
-        'projects': projects,
+        'projectsData': projects,
     })
 def Hackathons(request):
     if not request.user.is_authenticated:

@@ -12,4 +12,5 @@ urlpatterns = [
     path("Dashboard", views.Dashboard, name="Dashboard"),
     path("Projects", views.Projects, name="Projects"),
     path("Hackathons", views.Hackathons, name="Hackathons"),
+    path("ProjectsData", views.projectsData, name= "Projects Data"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -49,79 +49,80 @@
         });
 
 // Array of project data (example)
-const projectsData = [
-  {
-    category: "Machine Learning",
-    title: "Building a recommender system",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  {
-    category: "Machine Learning",
-    title: "Another project",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-    points: [
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor.",
-      "Lorem, ipsum dolor."
-    ]
-  },
-  // Add more project objects as needed
-];
+// const projectsData = [
+//   {
+//     category: "Machine Learning",
+//     title: "Building a recommender system",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   {
+//     category: "Machine Learning",
+//     title: "Another project",
+//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
+//     points: [
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor.",
+//       "Lorem, ipsum dolor."
+//     ]
+//   },
+//   // Add more project objects as needed
+// ];
+// const projectsData = fetch('/ProjectsData')
 
 // Function to generate a project card
 function createProjectCard(project) {
@@ -166,8 +167,9 @@ function createProjectCard(project) {
 }
 
 // Function to populate project cards
-function populateProjectCards() {
+function populateProjectCards(projectsData) {
   const projectContainer = document.getElementById("projectContainer");
+  console.log(projectsData);
   projectsData.forEach(project => {
     const card = createProjectCard(project);
     projectContainer.appendChild(card);
@@ -175,6 +177,14 @@ function populateProjectCards() {
 }
 
 // Call the populateProjectCards function to generate the project cards
-populateProjectCards();
+fetch('/ProjectsData')
+  .then(response => response.json())
+  .then(projectsData => {
+    console.log(projectsData);
+    // populateProjectCards(projectsData);
+  })
+  .catch(error => {
+    console.error('Error fetching projects data:', error);
+  });
 
       
