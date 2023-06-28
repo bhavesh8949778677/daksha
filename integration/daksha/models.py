@@ -7,6 +7,7 @@ class Point(models.Model):
     def __str__(self):
         return self.name
 
+
 class Project(models.Model):
     title = models.CharField(max_length=255, default="Hello")
     duration = models.CharField(max_length=50, default="2hrs")
@@ -16,15 +17,13 @@ class Project(models.Model):
     image = models.ImageField(upload_to='images/', default = "No image")
     points = models.ManyToManyField(Point, default = list)
 
-
     def __str__(self):
         return self.title
-
 
 class Submission(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete = models.CASCADE)
-    files = models.FileField(upload_to='submissions/zip_files/')
+    files = models.FileField(upload_to=f'submissions')
 
     def __str__(self):
         return f"Submission by {self.user.username} of {self.project.title}"

@@ -15,12 +15,12 @@ from .models import Project, Submission, Point
 from django import forms
 from django.core import serializers
 import json
-
+from django.shortcuts import get_object_or_404
 
 class SubmissionForm(forms.ModelForm):
     class Meta:
         model = Submission
-        fields = ('project', 'files')
+        fields = ('files',)
 
 
 class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
@@ -161,12 +161,37 @@ def Hackathons(request):
 
 @login_required
 def showProject(request,title):
+    form = SubmissionForm()
+    if request.method == 'GET':
+        project = Project.objects.filter(title = title)
+        if (project == []):
+            return HttpResponseRedirect(reverse("Projects"))
+        submission = Submission.objects.filter(project = project[0], user = request.user)
+        if len(submission)==0:
+            return render(request, 'daksha/view_project.html',{
+                'forms': form,
+                'project': project[0],
+            })
+        return render(request, 'daksha/view_project.html',{
+            'forms': form,
+            'project': project[0],
+            'submission': submission[0].files.url,
+        })
     if request.method == 'POST':
-        return render(request, 'daksha/view_project.html')
-    else:
+        project = get_object_or_404(Project, title=title)
+        sb = Submission.objects.filter(project=project, user=request.user).first()
+        form = SubmissionForm(request.POST, request.FILES, instance=sb)
+        if (form.is_valid()):
+            sb = form.save(commit=False)
+            sb.user = request.user
+            sb.project = project
+            sb.save()
+            return HttpResponseRedirect(reverse("Projects"))
         form = SubmissionForm()
-    return render(request, 'daksha/view_project.html')
-
+        return render(request, 'daksha/view_project.html',{
+            'forms': form,
+            'project': project,
+        })
 
 # @login_required
 # def view_submissions(request, ProjectName):
