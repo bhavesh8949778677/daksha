@@ -138,7 +138,7 @@ def activate_account(request, uidb64, token):
     else:
         return render(request, "daksha/af.html")
 
-@login_required
+
 def Dashboard(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -146,7 +146,7 @@ def Dashboard(request):
         'username' : request.user.username,
         'email': request.user.email
     })
-@login_required
+
 def Projects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -156,7 +156,7 @@ def Projects(request):
         'email': request.user.email,
         'projectsData': projects,
     })
-@login_required
+
 def Hackathons(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
