@@ -90,12 +90,16 @@ def register(request):
         password = request.POST["password"] 
         confirm = request.POST["confirm"]
         if password != confirm:
-            return render(request, "users/register.html", {
+            return render(request, "daksha/rregister.html", {
                 "message": "Passwords do not match"
             })
         if User.objects.filter(username=username).exists():
-            return render(request, "users/register.html", {
+            return render(request, "daksha/rregister.html", {
                 "message": "Username already taken"
+            })
+        if User.objects.filter(email=email).exists():
+            return render(request, "daksha/rregister.html", {
+                "message": "Email already taken"
             })
         user = User.objects.create_user(username=username, password=password, email=email)
         user.is_active = False
