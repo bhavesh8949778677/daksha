@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, get_user_model
@@ -15,7 +15,9 @@ from .models import Project, Submission, Point
 from django import forms
 from django.core import serializers
 import json
-from django.shortcuts import get_object_or_404
+from django.conf import settings
+import os
+
 
 class SubmissionForm(forms.ModelForm):
     class Meta:
@@ -34,7 +36,7 @@ def index(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("Dashboard"))
     return render(request, "daksha/index.html")
-
+@login_required
 def projectsData(request):
     projects = Project.objects.all()
     project_data = []
@@ -74,7 +76,7 @@ def login_view(request):
                 "message": "Invalid Credentials"
             })
     return render(request, "daksha/rlogin.html")
-
+@login_required
 def logout_view(request):
     logout(request)
     return render(request, "daksha/index.html", {
@@ -132,7 +134,7 @@ def activate_account(request, uidb64, token):
     else:
         return render(request, "daksha/af.html")
 
-
+@login_required
 def Dashboard(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -140,6 +142,7 @@ def Dashboard(request):
         'username' : request.user.username,
         'email': request.user.email
     })
+@login_required
 def Projects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -149,6 +152,7 @@ def Projects(request):
         'email': request.user.email,
         'projectsData': projects,
     })
+@login_required
 def Hackathons(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -193,7 +197,47 @@ def showProject(request,title):
             'project': project,
         })
 
-# @login_required
-# def view_submissions(request, ProjectName):
-#     submissions = Submission.objects.filter(user=request.user, project__title=ProjectName)
-#     return render(request, 'view_submissions.html', {'submissions': submissions})
+
+
+def serve_pdfs(request, filename):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'pdfs/' +filename)
+    if os.path.exists(file_path):
+        if request.user.is_authenticated:
+            with open(file_path, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+                return response
+        else:
+            return HttpResponseForbidden("You are not authorized to access this file.")
+    else:
+        return HttpResponseNotFound("File not found.")
+
+
+def serve_images(request, filename):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'images/' +filename)
+    if os.path.exists(file_path):
+        if request.user.is_authenticated:
+            with open(file_path, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+                return response
+        else:
+            return HttpResponseForbidden("You are not authorized to access this file.")
+    else:
+        return HttpResponseNotFound("File not found.")
+
+
+def serve_submissions(request, filename, username):
+    file_path = os.path.join(settings.MEDIA_ROOT, 'submissions/'+username+'/' +filename)
+    print(file_path)
+    if os.path.exists(file_path):
+        if request.user.is_authenticated and 'user_' + request.user.username == username:
+            with open(file_path, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='application/pdf')
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+                return response
+        else:
+            return HttpResponseForbidden("You are not authorized to access this file.")
+    else:
+        return HttpResponseNotFound("File not found.")
+

@@ -135,5 +135,4 @@ EMAIL_HOST_PASSWORD = 'lrxwtneyicwlyhrr'
 
 ALLOWED_HOSTS =[]
 import os
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join('/Users/bhaveshgurnani/Desktop/daksha/media')
