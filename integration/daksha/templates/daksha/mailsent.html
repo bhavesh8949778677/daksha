@@ -46,11 +46,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>A verification email has been sent to your registered email address</h1>
+        <h1>A verification email has been sent to {{email}}</h1>
         <p class="subtitle">Here's a quote to inspire you:</p>
         <blockquote>
             <p>"The only way to do great work is to love what you do." - Steve Jobs</p>
         </blockquote>
+        <h3>If Activated then <a href="{% url 'index' %}">Click here</a> to Log In</h3>
     </div>
 </body>
 </html>

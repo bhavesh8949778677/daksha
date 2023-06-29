@@ -335,14 +335,15 @@
               <div id="loginModal" class="fixed inset-0 z-50  items-center justify-center bg-black bg-opacity-50 hidden">
                 <div class="bg-white p-8 rounded-lg">
                   <h2 class="text-xl font-bold mb-4">Login</h2>
-                  <form>
+                  <form action="/SignIn" method="POST">
+                    {% csrf_token %}
                     <div class="mb-4">
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
-                      <input type="text" id="username" placeholder="Username" class="border border-gray-300 p-2 rounded w-full text-gray-700" />
+                      <input type="text" id="username" placeholder="Username" class="border border-gray-300 p-2 rounded w-full text-gray-700" name="username" />
                     </div>
                     <div class="mb-4">
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-                      <input type="password" id="password" placeholder="Password" class="border border-gray-300 p-2 rounded w-full text-gray-700" />
+                      <input type="password" id="password" placeholder="Password" class="border border-gray-300 p-2 rounded w-full text-gray-700" name="password" />
                     </div>
                     <div class="flex justify-between items-center">
                       <button class="bg-indigo-600 hover:bg-indigo-500 hover:text-white  text-white font-semibold py-2 px-4 rounded"> Submit </button>

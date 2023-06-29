@@ -11,7 +11,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage, get_connection,send_mail
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from .models import Project, Submission, Point
+from .models import Project, Submission, Point, Profile
 from django import forms
 from django.core import serializers
 import json
@@ -89,10 +89,6 @@ def register(request):
         email = request.POST["email"]
         password = request.POST["password"] 
         confirm = request.POST["confirm"]
-        if password != confirm:
-            return render(request, "daksha/rregister.html", {
-                "message": "Passwords do not match"
-            })
         if User.objects.filter(username=username).exists():
             return render(request, "daksha/rregister.html", {
                 "message": "Username already taken"
@@ -101,9 +97,14 @@ def register(request):
             return render(request, "daksha/rregister.html", {
                 "message": "Email already taken"
             })
+        if password != confirm:
+            return render(request, "daksha/rregister.html", {
+                "message": "Passwords do not match"
+            })
         user = User.objects.create_user(username=username, password=password, email=email)
         user.is_active = False
         user.save()
+        Profile.objects.create(user=user, credits=0)
         token = account_activation_token.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         print(f"token = {token}")
@@ -121,7 +122,10 @@ def register(request):
         email.content_subtype = "html"
         email.send()
         login(request, user)
-        return HttpResponseRedirect(reverse("Dashboard"))
+        return render(request,"daksha/mailsent.html",{
+            'username': request.user.username,
+            'email': request.user.email,
+        })
     return render(request,"daksha/rregister.html")
 
 def activate_account(request, uidb64, token):
@@ -142,27 +146,33 @@ def activate_account(request, uidb64, token):
 def Dashboard(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    credits = request.user.profile.credits
     return render(request, "daksha/Dashboard.html",{
         'username' : request.user.username,
-        'email': request.user.email
+        'email': request.user.email,
+        'credits': credits,
     })
 
 def Projects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     projects = Project.objects.all()
+    credits = request.user.profile.credits
     return render(request, "daksha/Projects.html",{
         'username' : request.user.username,
         'email': request.user.email,
         'projectsData': projects,
+        'credits': credits,
     })
 
 def Hackathons(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    credits = request.user.profile.credits
     return render(request, "daksha/Hackathons.html",{
         'username' : request.user.username,
-        'email': request.user.email
+        'email': request.user.email,
+        'credits': credits,
     })
 
 

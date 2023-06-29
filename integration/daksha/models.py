@@ -14,6 +14,7 @@ class Project(models.Model):
     duration = models.CharField(max_length=50, default="2hrs")
     skills_req = models.CharField(max_length=255, default="Python Basics")
     credits = models.IntegerField(default=0)
+    content = models.TextField(default = "")
     pdf = models.FileField(upload_to='pdfs/', default = "No pdf")
     image = models.ImageField(upload_to='images/', default = "No image")
     points = models.ManyToManyField(Point, default = list)
@@ -37,3 +38,7 @@ class Submission(models.Model):
 
     def __str__(self):
         return f"Submission by {self.user.username} of {self.project.title}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    credits = models.IntegerField(default=0)
