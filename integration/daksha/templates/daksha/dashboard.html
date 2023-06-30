@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React to HTML Conversion</title>
-    <link href="{% static 'daksha/output.css' %}" rel="stylesheet">
+    <link href="{% static 'daksha/dashboard.css' %}" rel="stylesheet">
+    <script src="{% static 'daksha/chart.umd.js' %}"></script>
+
     <style>
       .dropdown-menu {
         display: none;
@@ -53,7 +55,7 @@
                   <div class="relative mr-4">
                     <button class="flex max-w-xs items-center rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 notification-button">
                       <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full" src="https://cdn0.iconfinder.com/data/icons/rounded-set-1-5/48/alert-512.png" alt="">
+                      <img class="h-8 w-8 rounded-full" src="{% static 'daksha/assets/notification.png' %}" alt="">
                       <span class="text-sm">New notifications<span class="ml-1"></span></span>
 
                     </button>
@@ -71,7 +73,7 @@
                   <div class="relative">
                     <button class="flex max-w-xs items-center rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 profile-button">
                       <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full" src="https://www.healthepro.com/wp-content/uploads/2021/03/Staffing-Icon-480x480.png" alt="">
+                      <img class="h-8 w-8 rounded-full" src="{% static 'daksha/assets/profile.png' %}" alt="">
                     </button>
 
                     <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 dropdown-menu" id="dropdownMenu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -117,7 +119,7 @@
             <div class="pt-4 pb-3 border-t border-gray-700">
               <div class="flex justify-between px-5">
                 <div class="flex items-center px-5"><div class="flex-shrink-0">
-                  <img class="h-10 w-10 rounded-full" src="https://www.healthepro.com/wp-content/uploads/2021/03/Staffing-Icon-480x480.png" alt="">
+                  <img class="h-10 w-10 rounded-full" src="{% static 'daksha/assets/profile.png' %}" alt="">
                 </div>
 
                 <div class="ml-3">
@@ -128,7 +130,7 @@
                 <div class="relative mr-4">
                     <button class="flex max-w-xs items-center rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 mobile-notification-button">
                       <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full" src="https://cdn0.iconfinder.com/data/icons/rounded-set-1-5/48/alert-512.png" alt="">
+                      <img class="h-8 w-8 rounded-full" src="{% static 'daksha/assets/notification.png' %}" alt="">
                       <span class="text-sm">New notifications<span class="ml-1"></span></span>
 
                     </button>
@@ -154,12 +156,47 @@
         </nav>
       </div>
       <section class="pt-16">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div class="px-4 sm:px-0">
-            <h1 class="text-2xl font-semibold text-gray-900 text-center">Dashboard</h1>
+  <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="px-4 sm:px-0">
+      <h1 class="text-2xl font-semibold text-gray-900 text-center"></h1>
+      
+      <div class="flex flex-col justify-center items-center py-8 px-4">
+  <div class="w-full lg:w-2/3">
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <div class="lg:flex w-full justify-between">
+          <h3 class="text-gray-900 dark:text-gray-900 leading-5 text-base md:text-xl font-bold">Credits Overview</h3>
+          <div class="flex items-center justify-between lg:justify-start mt-2 md:mt-4 lg:mt-0">
+            <div class="flex items-center"></div>
+            <div class="lg:ml-14">
+              <div class="bg-gray-100 dark:bg-gray-900 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
+                <select aria-label="select year" class="text-xs text-gray-900 dark:text-gray-900 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded">
+                  <option class="leading-1">Year</option>
+                  <option class="leading-1">2023</option>
+                  <option class="leading-1">2022</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+        <div class="flex mt-6 justify-center items-center">
+          <h3 class="text-indigo-500 leading-5 text-lg md:text-2xl">0 : <span style="color: rgb(135, 189, 82);">Newbie</span></h3>
+          <div class="flex items-center md:ml-4 ml-1 text-green-700">
+            <p class="text-green-700 text-xs md:text-base">-17%</p>
+            <img class="text-green-700" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/line-graph-svg1.svg" alt="upward arrow" />
+          </div>
+        </div>
+      </div>
+      <div class="mt-6">
+        <canvas id="myChart" role="img" aria-label="line graph to show selling overview in terms of months and numbers"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
     </div>
     
     <script src="{% static 'daksha/dashboard.js' %}"> 

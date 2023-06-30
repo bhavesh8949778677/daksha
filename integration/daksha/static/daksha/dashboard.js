@@ -49,3 +49,40 @@ document.addEventListener('click', (event) => {
 });
 
 
+
+const chart = new Chart(document.getElementById("myChart"), {
+    type: "line",
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Nov", "Dec"],
+      datasets: [
+        {
+          label: "Credits",
+          borderColor: "#4F46E5",
+          data: [600, 400, 620, 300, 200, 600, 230, 300, 200, 200, 100, 1200],
+          fill: false,
+          pointBackgroundColor: "#0056b3",
+          borderWidth: "3",
+          pointBorderWidth: "4",
+          pointHoverRadius: "6",
+          pointHoverBorderWidth: "8",
+          pointHoverBorderColor: "#0056b3",
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      scales: {
+        x: {
+          display: true,
+          color:"red",
+        },
+        y: {
+          display: true,
+        },
+      },
+    },
+  });
