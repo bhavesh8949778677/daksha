@@ -79,9 +79,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-    return render(request, "daksha/index.html", {
-                "message": "Logged Out"
-            })
+    return HttpResponseRedirect(reverse("index"))
 
 def register(request):
     if request.method == "POST":
@@ -182,33 +180,54 @@ def showProject(request,title):
     form = SubmissionForm()
     if request.method == 'GET':
         project = Project.objects.filter(title = title)
-        if (project == []):
+        if (len(project) == 0):
             return HttpResponseRedirect(reverse("Projects"))
         submission = Submission.objects.filter(project = project[0], user = request.user)
         if len(submission)==0:
             return render(request, 'daksha/view_project.html',{
                 'forms': form,
                 'project': project[0],
+                'username' : request.user.username,
+                'email': request.user.email,
+                'credits': credits,
             })
         return render(request, 'daksha/view_project.html',{
             'forms': form,
             'project': project[0],
             'submission': submission[0].files.url,
+            'username' : request.user.username,
+            'email': request.user.email,
+            'credits': credits,
         })
     if request.method == 'POST':
         project = get_object_or_404(Project, title=title)
         sb = Submission.objects.filter(project=project, user=request.user).first()
-        form = SubmissionForm(request.POST, request.FILES, instance=sb)
-        if (form.is_valid()):
-            sb = form.save(commit=False)
+        if (sb == None):
+            sb = Submission() 
+        file = request.FILES.get('file')
+        if file.size < 15*1024*1024:
+            sb.files = file
             sb.user = request.user
             sb.project = project
             sb.save()
-            return HttpResponseRedirect(reverse("Projects"))
+            return render(request, 'daksha/view_project.html',{
+            'forms': form,
+            'project': project,
+            'submission': sb.files.url,
+            'username' : request.user.username,
+            'email': request.user.email,
+            'credits': credits,
+            'show': True,
+        })
         form = SubmissionForm()
         return render(request, 'daksha/view_project.html',{
             'forms': form,
             'project': project,
+            'submission': sb.files.url,
+            'username' : request.user.username,
+            'email': request.user.email,
+            'credits': credits,
+            'show': False,
         })
 
 

@@ -38,12 +38,12 @@
       var alertContainer = document.querySelector(".alert-container");
       var alert = document.querySelector(".alert");
       
-      submitButton.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent form submission
+      // submitButton.addEventListener("click", function(event) {
+      //   event.preventDefault(); // Prevent form submission
         
-        alertContainer.style.display = "flex";
-        alert.style.display = "block";
-      });
+      //   alertContainer.style.display = "flex";
+      //   alert.style.display = "block";
+      // });
 
       closeButton_submit.addEventListener("click", function() {
         alertContainer.style.display = "none";

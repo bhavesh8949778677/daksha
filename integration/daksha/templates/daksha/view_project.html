@@ -134,7 +134,7 @@
       justify-content: center;
     }
     .alert {
-      display: none;
+      display: block;
       width: 300px;
     }
             .mobile-menu {
@@ -213,12 +213,14 @@
                         <img class="h-6 inline-block w-6 rounded-full" src="{% static 'daksha/assets/thunder.png' %}" alt="" />
                         <span class="text-sm">0: <span style="color: rgb(144, 201, 87);">Newbie</span><span class="ml-1"></span></span>
                     </button>
-                    <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+
+                   <a href="{% url 'logout' %}"><button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
                         <span class="sr-only">Log out</span>
                         <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
                     </button>
+                </a>
                 </div>
                 <div class="-mr-2 flex md:hidden">
                     <!-- Mobile menu button -->
@@ -276,14 +278,13 @@
                         <!-- Product info -->
                         <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                             <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                                <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Project title: to be filled</h1>
-                            </div>
+                                <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{project.title}}</h1>                            </div>
 
                             <!-- Options -->
                             <div class="mt-4 lg:row-span-3 lg:mt-0">
                                 <h2 class="sr-only">Product information</h2>
-                                <p class="text-3xl tracking-tight text-gray-900">Credits: to be filled</p>
-                                <p class="text-xl tracking-tight mt-4 text-gray-900">Duration: to be filled</p>
+                                <p class="text-3xl tracking-tight text-gray-900">Credits: {{project.credits}}</p>
+                                <p class="text-xl tracking-tight mt-4 text-gray-900">Duration: {{project.duration}}</p>
 
 
                                 <!-- Reviews -->
@@ -333,7 +334,7 @@
                                     </div>
                                 </div>
 
-                                <form class="mt-10">
+                                <form class="mt-10" action="/{{project.title}}/view" method = "POST" enctype="multipart/form-data">
                                     <!-- Colors -->
                                     <div>
                                         <div class="mt-10">
@@ -346,6 +347,7 @@
                                             </ul>
                                         </div>
                                     </div>
+{% if show %}
   <div class="alert-container p-10">
     <div role="alert" class="alert rounded-xl border border-gray-100 bg-white p-4 shadow-xl">
       <div class="flex items-start gap-4">
@@ -369,24 +371,27 @@
       </div>
     </div>
   </div>
+  {% endif %}
   
                                     <!-- Sizes -->
                                     <div class="mt-10">
+                                        {% csrf_token %}
                                         <div class="container">
                                             <div class="project-actions">
                                                 <div class="file-upload mb-5">
-                                                    <input type="file" name="zip-file" id="zip-file" required />
+                                                    <input type="file" name="file" id="zip-file" required />
                                                     <label for="zip-file">
                                                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
                                                         <span class="upload-text">Click to upload ZIP file: (limit 15MB)</span>
                                                     </label>
                                                 </div>
-                                                <button id="submitButton"type="submit">Submit</button>
+                                                <button id="submitButton" type="submit">Submit</button>
                                             </div>
-
+                                        {% if submission %}
                                             <div class="latest-submission">
-                                                <p>Download Latest Submission: <a href="/submissions/latest" class="underline text-sm">Download ZIP</a></p>
+                                                <p>Download Latest Submission: <a href="{{submission}}" download class="underline text-sm">Download Submission</a></p>
                                             </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </form>
@@ -417,12 +422,13 @@
                                     </div>
                                 </div>
                                 <div class="mt-10 flex justify-center">
+                                    <a href="{{project.pdf.url}}">
                                     <button
-                                        type="submit"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                     >
                                         Download PDF
                                     </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
