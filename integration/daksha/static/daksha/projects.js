@@ -1,52 +1,36 @@
-        const profileButton = document.querySelector('.profile-button');
+       // Mobile menu button
+            const mobileMenuButton = document.querySelector(".mobile-menu-button");
 
-        const notificationButton = document.querySelector('.notification-button');
-        const mobileNotificationButton = document.querySelector('.mobile-notification-button');
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        const notidownMenu = document.getElementById('notification-menu');
-        const mobileNotificationDown=document.getElementById('mobile-notification-menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
+            // Mobile menu content
+            const mobileMenuContent = document.querySelector(".mobile-menu");
 
-        profileButton.addEventListener('click', () => {
-          dropdownMenu.classList.toggle('active');
-        });
-        mobileMenuButton.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-        window.addEventListener('resize', () => {
-          if (window.innerWidth > 768) {
-            mobileMenu.classList.add('hidden');
-          }
-        });
-        document.addEventListener('click', (event) => {
-          const targetElement = event.target;
-          if (!targetElement.closest('.profile-button') && !targetElement.closest('.dropdown-menu')) {
-            dropdownMenu.classList.remove('active');
-          }
-        });
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenuContent.classList.toggle("active");
+            });
 
-       
-        notificationButton.addEventListener('click', () => {
-          notidownMenu.classList.toggle('active');
-        });
+            // Close mobile menu when a menu item is clicked
+            const mobileMenuLinks = document.querySelectorAll(".mobile-menu-content a");
+            mobileMenuLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    mobileMenuContent.classList.remove("active");
+                });
+            });
 
-        document.addEventListener('click', (event) => {
-          const targetElement = event.target;
-          if (!targetElement.closest('.notification-button') && !targetElement.closest('.notification-menu')) {
-            notidownMenu.classList.remove('active');
-          }
-        });
+            // Close mobile menu when close button is clicked
+            const closeButton = document.querySelector(".close-button");
+            closeButton.addEventListener("click", () => {
+                mobileMenuContent.classList.remove("active");
+            });
 
-        mobileNotificationButton.addEventListener('click', () => {
-          mobileNotificationDown.classList.toggle('active');
-        });
-        document.addEventListener('click', (event) => {
-          const targetElement = event.target;
-          if (!targetElement.closest('.mobile-notification-button') && !targetElement.closest('.mobile-notification-menu')) {
-            mobileNotificationDown.classList.remove('active');
-          }
-        });
+            // Hide mobile menu when clicking outside
+            document.addEventListener("mouseup", (event) => {
+                const targetElement = event.target;
+                if (!targetElement.closest(".mobile-menu") && !targetElement.closest(".mobile-menu-button")) {
+                    mobileMenuContent.classList.remove("active");
+                }
+            });
+
 
 // Array of project data (example)
 // const projectsData = [

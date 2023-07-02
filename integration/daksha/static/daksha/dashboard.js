@@ -1,56 +1,38 @@
-const profileButton = document.querySelector('.profile-button');
+// Mobile menu button
+            const mobileMenuButton = document.querySelector(".mobile-menu-button");
 
-const notificationButton = document.querySelector('.notification-button');
-const mobileNotificationButton = document.querySelector('.mobile-notification-button');
-const mobileMenuButton = document.querySelector('.mobile-menu-button');
-const dropdownMenu = document.getElementById('dropdownMenu');
-const notidownMenu = document.getElementById('notification-menu');
-const mobileNotificationDown=document.getElementById('mobile-notification-menu');
-const mobileMenu = document.querySelector('.mobile-menu');
+            // Mobile menu content
+            const mobileMenuContent = document.querySelector(".mobile-menu");
 
-profileButton.addEventListener('click', () => {
-  dropdownMenu.classList.toggle('active');
-});
-mobileMenuButton.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) {
-    mobileMenu.classList.add('hidden');
-  }
-});
-document.addEventListener('click', (event) => {
-  const targetElement = event.target;
-  if (!targetElement.closest('.profile-button') && !targetElement.closest('.dropdown-menu')) {
-    dropdownMenu.classList.remove('active');
-  }
-});
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenuContent.classList.toggle("active");
+            });
 
+            // Close mobile menu when a menu item is clicked
+            const mobileMenuLinks = document.querySelectorAll(".mobile-menu-content a");
+            mobileMenuLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    mobileMenuContent.classList.remove("active");
+                });
+            });
 
-notificationButton.addEventListener('click', () => {
-  notidownMenu.classList.toggle('active');
-});
+            // Close mobile menu when close button is clicked
+            const closeButton = document.querySelector(".close-button");
+            closeButton.addEventListener("click", () => {
+                mobileMenuContent.classList.remove("active");
+            });
 
-document.addEventListener('click', (event) => {
-  const targetElement = event.target;
-  if (!targetElement.closest('.notification-button') && !targetElement.closest('.notification-menu')) {
-    notidownMenu.classList.remove('active');
-  }
-});
-
-mobileNotificationButton.addEventListener('click', () => {
-  mobileNotificationDown.classList.toggle('active');
-});
-document.addEventListener('click', (event) => {
-  const targetElement = event.target;
-  if (!targetElement.closest('.mobile-notification-button') && !targetElement.closest('.mobile-notification-menu')) {
-    mobileNotificationDown.classList.remove('active');
-  }
-});
+            // Hide mobile menu when clicking outside
+            document.addEventListener("mouseup", (event) => {
+                const targetElement = event.target;
+                if (!targetElement.closest(".mobile-menu") && !targetElement.closest(".mobile-menu-button")) {
+                    mobileMenuContent.classList.remove("active");
+                }
+            });
 
 
-
-const chart = new Chart(document.getElementById("myChart"), {
+            const chart = new Chart(document.getElementById("myChart"), {
     type: "line",
     data: {
       labels: ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Nov", "Dec"],
@@ -58,7 +40,7 @@ const chart = new Chart(document.getElementById("myChart"), {
         {
           label: "Credits",
           borderColor: "#4F46E5",
-          data: [600, 400, 620, 300, 200, 600, 230, 300, 200, 200, 100, 1200],
+          data: [10, 70, 90, 100, 200, 300, 320, 390, 420, 520, 600],
           fill: false,
           pointBackgroundColor: "#0056b3",
           borderWidth: "3",
@@ -86,3 +68,27 @@ const chart = new Chart(document.getElementById("myChart"), {
       },
     },
   });
+
+  var ctx = document.getElementById('myChart2').getContext('2d');
+
+    // Define the data for the pie chart
+    var data = {
+      labels: ['JAVA', 'Python', 'C/C++'],
+      datasets: [{
+        data: [30, 50, 20],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+      }]
+    };
+
+    // Create the pie chart
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+
+
+    
