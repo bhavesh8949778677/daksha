@@ -17,7 +17,10 @@
                 padding: 0.25rem 0.75rem;
             }
             .alert-container {
-                display: none;
+                display: flex;
+            }
+            .alert {
+                display: flex;
             }
 
             .alert-content {
@@ -45,7 +48,7 @@
     </head>
 
     <body>
-        <div class="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-hero">
+        <div class="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-hero h-screen">
             {% if message %}
             <div class="messages" style="color: white;">
                 <div class="alert-container justify-center mt-10">
