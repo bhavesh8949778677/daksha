@@ -228,6 +228,7 @@ def showProject(request,title):
             'email': request.user.email,
             'credits': credits,
             'show': False,
+            'limit': "File Limit Exceeded",
         })
 
 
