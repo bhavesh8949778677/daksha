@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +25,7 @@
         <header class="fixed w-full z-10 bg-gray-900 transition-all">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
-                    <a href="" class="-m-1.5 p-1.5">
+                    <a href="{% url 'index' %}" class="-m-1.5 p-1.5">
                         <span class="sr-only">Your Company</span>
                         <img class="h-10 w-auto" src="{% static 'daksha/assets/main_logo.png' %}" alt="" />
                     </a>
@@ -93,15 +95,15 @@
                         <div class="-mx-3 flex items-center sm:-mx-4">
                             <div class="w-full px-3 sm:px-4 xl:w-1/2">
                                 <div class="py-3 sm:py-4">
-                                    <img src="im-1.png" alt="" class="w-full rounded-2xl" />
+                                    <img src="{% static 'daksha/assets/im-1.png' %}" alt="" class="w-full rounded-2xl" />
                                 </div>
                                 <div class="py-3 sm:py-4">
-                                    <img src="im-2.png" alt="" class="w-full rounded-2xl" />
+                                    <img src="{% static 'daksha/assets/im-2.png' %}" alt="" class="w-full rounded-2xl" />
                                 </div>
                             </div>
                             <div class="w-full px-3 sm:px-4 xl:w-1/2 -z-10">
                                 <div class="relative z-10 my-4">
-                                    <img src="im-3.png" alt="" class="w-full rounded-2xl" />
+                                    <img src="{% static 'daksha/assets/im-3.png' %}" alt="" class="w-full rounded-2xl" />
                                     <span class="absolute -right-7 -bottom-7 z-[-1]">
                                         <svg width="134" height="106" viewBox="0 0 134 106" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="1.66667" cy="104" r="1.66667" transform="rotate(-90 1.66667 104)" fill="#3056D3" />

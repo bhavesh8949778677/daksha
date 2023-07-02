@@ -17,4 +17,5 @@ urlpatterns = [
     path("pdfs/<str:filename>", views.serve_pdfs, name='serve_pdfs'),
     path("images/<str:filename>", views.serve_images, name='serve_images'),
     path("submissions/<str:username>/<str:filename>", views.serve_submissions, name = "serve_submissions"),
+    path("Catalyst", views.Catalyst, name="Catalyst"),
 ]

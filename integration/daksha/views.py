@@ -275,3 +275,5 @@ def serve_submissions(request, filename, username):
     else:
         return HttpResponseNotFound("File not found.")
 
+def Catalyst(request):
+    return render(request, "daksha/Catalyst.html")
