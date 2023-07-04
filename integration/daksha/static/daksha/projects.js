@@ -308,7 +308,7 @@ const projects = [
           <p class="text-sm mb-4">Key skills that you will gain:</p>
           <div class="text-sm">
             ${getSkills(project.skills)}
-            <button class="w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md">View Project</button>
+            <a href="${project.title}/view"><button class="w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md">View Project</button></a>
           </div>
         `;
 
