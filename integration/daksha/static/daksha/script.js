@@ -20,7 +20,7 @@ function toggleMobileMenu() {
 const projects = [
       {
         companyName: "Company A",
-        companyLogo: "../static/daksha/assets/logo.png",
+        companyLogo: "../static/daksha/assets/enacti.png",
         title: "Excel for beginners : Pivot Tables",
         stars: 1,
         programmingLanguage: "MS Excel",
@@ -38,7 +38,7 @@ const projects = [
         duration: "15 hours",
         credits: 50,
         category:"Programming ",
-        skills: ["Application of Tkinter and Pygame", "In-built method mixer()", ]
+        skills: ["Application of Tkinter and Pygame", "In-built method mixer()" ]
       },
       {
         companyName: "Company A",
@@ -49,7 +49,7 @@ const projects = [
         duration: "30 hours",
         category:"Programming",
         credits: 70,
-        skills: ["Eyewitness module", "Investigator and Admin module", "An effective image detection system"]
+        skills: ["Eyewitness module", "Investigator and Admin module"]
       },
       
       // Add more project data objects as needed
@@ -74,7 +74,7 @@ const projects = [
           <div class="mb-4 flex justify-between items-center">
 
             <div class="flex items-center">
-              <span class="uppercase px-3 py-1 bg-indigo-200 text-indigo-900 rounded-2xl text-xs">
+              <span class="uppercase px-3 py-1  text-indigo-900 rounded-2xl text-xs">
                 <img src="${project.companyLogo}" alt="Logo" class="h-8 object-contain" />
               </span>
             </div>
