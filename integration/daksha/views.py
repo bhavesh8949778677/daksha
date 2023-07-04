@@ -49,8 +49,9 @@ def projectsData(request):
             'duration': project.duration,
             'skills_req': project.skills_req,
             'credits': project.credits,
+            'level': project.level,
             # 'pdf': project.pdf.url,
-            # 'image': project.image.url,
+            'logo': project.logo.url,
             'points': points
         }
         project_data.append(project_dict)

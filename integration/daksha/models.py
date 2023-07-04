@@ -12,10 +12,14 @@ class Point(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=255, default="Hello")
     duration = models.CharField(max_length=50, default="2hrs")
+    category = models.CharField(max_length=50, default="Programming")
+    level = models.IntegerField(default = 0)
     skills_req = models.CharField(max_length=255, default="Python Basics")
     credits = models.IntegerField(default=0)
+    about_company = models.TextField(default = "")
     content = models.TextField(default = "")
     pdf = models.FileField(upload_to='pdfs/', default = "No pdf")
+    logo  = models.ImageField(upload_to = 'images/', default = "Logo")
     image = models.ImageField(upload_to='images/', default = "No image")
     points = models.ManyToManyField(Point, default = list)
 
@@ -42,3 +46,4 @@ class Submission(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     credits = models.IntegerField(default=0)
+    rank = models.IntegerField(default = 0)
