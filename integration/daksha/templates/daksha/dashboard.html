@@ -1,12 +1,13 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link href="{% static 'daksha/dashboard.css' %}" rel="stylesheet">
-    <script src="{% static 'daksha/chart.umd.js' %}"></script>
+        <link href="{% static 'daksha/dashboard.css' %}" rel="stylesheet" />
+        <script src="{% static 'daksha/chart.umd.js' %}"></script>
+        <script src="{% static 'daksha/chartjs-plugin-annotation.min.js' %}"></script>
 
         <style>
             .mobile-menu {
@@ -85,12 +86,13 @@
                         <img class="h-6 inline-block w-6 rounded-full" src="{% static 'daksha/assets/thunder.png' %}" alt="" />
                         <span class="text-sm">0: <span style="color: rgb(144, 201, 87);">Newbie</span><span class="ml-1"></span></span>
                     </button>
-                    <a href = "{% url 'logout' %}"><button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-                        <span class="sr-only">Log out</span>
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                    </button>
+                    <a href="{% url 'logout' %}">
+                        <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                            <span class="sr-only">Log out</span>
+                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                        </button>
                     </a>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -126,7 +128,7 @@
                                     <span class="text-sm text-gray-900">{{email}}</span>
                                 </div>
                             </button>
-                            <a href="/Dashboard" class="  bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+                            <a href="/Dashboard" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
                             <a href="/Projects" class="text-gray-500 hover:bg-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
                             <a href="/Hackathons" class="text-gray-500 hover:bg-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Hackathons</a>
                             <button class="close-button relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
@@ -145,7 +147,6 @@
                         <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
                         <h2 class="text-gray-600 ml-0.5">Track your progres and learn from mistakes</h2>
                     </div>
-                    
                 </div>
                 <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -162,7 +163,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">1000</span>
+                            <span class="block text-2xl font-bold">250</span>
                             <span class="block text-gray-500">Total credits</span>
                         </div>
                     </div>
@@ -173,7 +174,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">+100</span>
+                            <span class="block text-2xl font-bold">+80</span>
                             <span class="block text-gray-500">Latest increment</span>
                         </div>
                     </div>
@@ -184,9 +185,9 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="inline-block text-2xl font-bold">14%</span>
+                            <span class="inline-block text-2xl font-bold">0%</span>
                             <span class="inline-block text-xl text-gray-500 font-semibold"></span>
-                            <span class="block text-gray-500">decrease from last month</span>
+                            <span class="block text-gray-500">you are skyrocketing</span>
                         </div>
                     </div>
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -201,7 +202,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">83%</span>
+                            <span class="block text-2xl font-bold">93%</span>
                             <span class="block text-gray-500">Accuracy</span>
                         </div>
                     </div>
@@ -215,6 +216,22 @@
                                     <div class="justify-between h-full">
                                         <div class="mt-0">
                                             <canvas id="myChart" role="img" aria-label="line graph to show selling overview in terms of months and numbers"></canvas>
+                                            <!-- <div class="w-full bg-neutral-200 dark:bg-neutral-600">
+                                                <div class="relative h-4 bg-neutral-400">
+                                                    <div id="newbie" class="absolute top-0 bottom-0 bg-red-400 flex items-center pl-2 pr-1 overflow-hidden">
+                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Newbie</span>
+                                                    </div>
+                                                    <div id="pupil" class="absolute top-0 bottom-0 bg-yellow-400 flex items-center pl-2 pr-1 overflow-hidden">
+                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Pupil</span>
+                                                    </div>
+                                                    <div id="specialist" class="absolute top-0 bottom-0 bg-green-400 flex items-center pl-2 pr-1 overflow-hidden">
+                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Specialist</span>
+                                                    </div>
+                                                    <div id="master" class="absolute top-0 bottom-0 bg-blue-400 flex items-center pl-2 pr-1 overflow-hidden">
+                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Master</span>
+                                                    </div>
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -223,22 +240,20 @@
                     </div>
 
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
-                        
-                            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
-                                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                    />
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="block text-2xl font-bold">62</span>
-                                <span class="block text-gray-500">Participants</span>
-                            </div>
-                        
+                        <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
+                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold">42/950</span>
+                            <span class="block text-gray-500">Rank</span>
+                        </div>
                     </div>
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
                         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-teal-600 bg-teal-100 rounded-full mr-6">
@@ -268,63 +283,72 @@
                                     <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                                         <img src="{% static 'daksha/assets/project.png' %}" alt="Annette Watson profile picture" />
                                     </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+50</span>
+                                    <span class="text-gray-600">Excel Pivot Table</span>
+                                    <span class="ml-auto font-semibold">+40</span>
                                 </li>
                                 <li class="flex items-center">
                                     <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                                         <img src="{% static 'daksha/assets/project.png' %}" alt="Calvin Steward profile picture" />
                                     </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+100</span>
+                                    <span class="text-gray-600">Music Player</span>
+                                    <span class="ml-auto font-semibold">+60</span>
+                                </li>
+                                
+                                <li class="flex items-center">
+                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
+                                    </div>
+                                    <span class="text-gray-600">JAVA Developement</span>
+                                    <span class="ml-auto font-semibold">+50</span>
                                 </li>
                                 <li class="flex items-center">
                                     <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                                         <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
                                     </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
+                                    <span class="text-gray-600">Face Detection Tool</span>
+                                    <span class="ml-auto font-semibold">+50</span>
                                 </li>
                                 <li class="flex items-center">
                                     <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                                         <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
                                     </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
+                                    <span class="text-gray-600">E-commerce App</span>
+                                    <span class="ml-auto font-semibold">+80</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+                            <span>Recommended projects</span>
+                            <button type="button" class="inline-flex justify-center rounded-md px-1 -mr-1 bg-white text-xs leading-5 font-medium text-gray-500 hover:text-gray-600" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                                Credits
+                                
+                            </button> 
+                           
+                        </div>
+                        <div class="overflow-y-auto" style="max-height: 24rem;">
+                            <ul class="p-6 space-y-6">
+                                <li class="flex items-center">
+                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Annette Watson profile picture" />
+                                    </div>
+                                    <span class="text-gray-600">Recommendar System</span>
+                                    <span class="ml-auto font-semibold">50</span>
                                 </li>
                                 <li class="flex items-center">
                                     <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
+                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Calvin Steward profile picture" />
                                     </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
+                                    <span class="text-gray-600">Deep Fake Detection</span>
+                                    <span class="ml-auto font-semibold">100</span>
                                 </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Project name</span>
-                                    <span class="ml-auto font-semibold">+40</span>
-                                </li>
+                                
+                                
+                                
                             </ul>
                         </div>
                     </div>
                     <div class="flex flex-col row-span-3 bg-white shadow rounded-lg">
-                        <div class="px-6 py-5 font-semibold border-b border-gray-100">Programming proficiency</div>
+                        <div class="px-6 py-5 font-semibold border-b border-gray-100">Portfolio</div>
                         <div class="p-4 flex-grow">
                             <div class="flex items-center justify-center h-full px-4 py-24 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md"><canvas id="myChart2"></canvas></div>
                         </div>
@@ -338,4 +362,3 @@
         <script src="{% static 'daksha/dashboard.js' %}"></script>
     </body>
 </html>
-
