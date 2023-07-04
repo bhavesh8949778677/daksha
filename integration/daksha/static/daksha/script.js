@@ -38,7 +38,7 @@ const projects = [
         duration: "15 hours",
         credits: 50,
         category:"Programming ",
-        skills: ["Application of Tkinter and Pygame", "In-bult method mixer()", ]
+        skills: ["Application of Tkinter and Pygame", "In-built method mixer()", ]
       },
       {
         companyName: "Company A",
