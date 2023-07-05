@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 import os
 
 class Point(models.Model):
@@ -39,6 +40,7 @@ class Submission(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete = models.CASCADE)
     files = models.FileField(upload_to=user_submission_path)
+    submission_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"Submission by {self.user.username} of {self.project.title}"
@@ -47,3 +49,5 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     credits = models.IntegerField(default=0)
     rank = models.IntegerField(default = 0)
+    projects_done = models.ManyToManyField(Project, default = list)
+    accuracy = models.FloatField(default=0.0)
