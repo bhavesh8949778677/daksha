@@ -15,7 +15,9 @@
     "watch:login": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/log.css --watch",
     "watch:Projects": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/pro.css --watch",
     "watch:Catalyst": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/cat.css --watch",
-    "watch:dashboard": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/dash.css --watch"
+    "watch:dashboard": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/dash.css --watch",
+    "watch:view_project": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/vkar.css --watch"
+
 
 
 
