@@ -12,9 +12,10 @@ class Point(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=255, default="Hello")
-    duration = models.CharField(max_length=50, default="2hrs")
+    duration = models.IntegerField(default=2)
     category = models.CharField(max_length=50, default="Programming")
-    level = models.IntegerField(default = 0)
+    level = models.FloatField(default = 0.0)
+    tool = models.IntegerField(default = 0)
     skills_req = models.CharField(max_length=255, default="Python Basics")
     credits = models.IntegerField(default=0)
     about_company = models.TextField(default = "")
@@ -41,6 +42,7 @@ class Submission(models.Model):
     project = models.ForeignKey(Project, on_delete = models.CASCADE)
     files = models.FileField(upload_to=user_submission_path)
     submission_time = models.DateTimeField(default=timezone.now)
+    got_credits = models.IntegerField(default = 0)
 
     def __str__(self):
         return f"Submission by {self.user.username} of {self.project.title}"
@@ -50,4 +52,6 @@ class Profile(models.Model):
     credits = models.IntegerField(default=0)
     rank = models.IntegerField(default = 0)
     projects_done = models.ManyToManyField(Project, default = list)
-    accuracy = models.FloatField(default=0.0)
+
+
+

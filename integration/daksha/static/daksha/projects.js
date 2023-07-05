@@ -117,57 +117,50 @@
 //   });
 // }
 
-// // Call the populateProjectCards function to generate the project cards
-// fetch('/ProjectsData')
-//   .then(response => response.json())
-//   .then(projectsData => {
-//     console.log(projectsData);
-//     populateProjectCards(projectsData);
-//   })
-//   .catch(error => {
-//     console.error('Error fetching projects data:', error);
-//   });
+// Call the populateProjectCards function to generate the project cards
 
-const projects = [
-      {
-        companyName: "Company A",
-        companyLogo: "../static/daksha/assets/enacti.png",
-        title: "Excel for beginners : Pivot Tables",
-        stars: 1,
-        programmingLanguage: "MS Excel",
-        duration: "2 hours",
-        credits: 10,
-        category:"Business Development",
-        skills: ["Analyzing & summarize data", "Generating visual graphs from data"]
-      },
-      {
-        companyName: "Company A",
-        companyLogo: "../static/daksha/assets/cheque.png",
-        title:"Python programming - Music Player",
-        stars: 2,
-        programmingLanguage: "Python",
-        duration: "15 hours",
-        credits: 50,
-        category:"Programming ",
-        skills: ["Application of Tkinter and Pygame", "In-built method mixer()", ]
-      },
-      {
-        companyName: "Company A",
-        title:"Advanced JAVA development",
-        companyLogo: "../static/daksha/assets/comp-3.png",
-        stars: 3.5,
-        programmingLanguage: "JAVA",
-        duration: "30 hours",
-        category:"Programming",
-        credits: 70,
-        skills: ["Eyewitness module", "Investigator and Admin module"]
-      },
+
+// const projects = [
+//       {
+//         companyName: "Company A",
+//         companyLogo: "../static/daksha/assets/enacti.png",
+//         title: "Excel for beginners : Pivot Tables",
+//         stars: 1,
+//         programmingLanguage: "MS Excel",
+//         duration: "2 hours",
+//         credits: 10,
+//         category:"Business Development",
+//         skills: ["Analyzing & summarize data", "Generating visual graphs from data"]
+//       },
+//       {
+//         companyName: "Company A",
+//         companyLogo: "../static/daksha/assets/cheque.png",
+//         title:"Python programming - Music Player",
+//         stars: 2,
+//         programmingLanguage: "Python",
+//         duration: "15 hours",
+//         credits: 50,
+//         category:"Programming ",
+//         skills: ["Application of Tkinter and Pygame", "In-built method mixer()", ]
+//       },
+//       {
+//         companyName: "Company A",
+//         title:"Advanced JAVA development",
+//         companyLogo: "../static/daksha/assets/comp-3.png",
+//         stars: 3.5,
+//         programmingLanguage: "JAVA",
+//         duration: "30 hours",
+//         category:"Programming",
+//         credits: 70,
+//         skills: ["Eyewitness module", "Investigator and Admin module"]
+//       },
       
-      // Add more project data objects as needed
-    ];
+//       // Add more project data objects as needed
+//     ];
 
     // Function to generate the project cards
-    function generateProjectCards() {
+
+    function generateProjectCards(projects) {
       const projectContainer = document.getElementById("projectContainer");
       
       // Generate the project cards
@@ -186,14 +179,14 @@ const projects = [
 
             <div class="flex items-center">
               <span class="uppercase px-3 py-1  text-indigo-900 rounded-2xl text-xs">
-                <img src="${project.companyLogo}" alt="Logo" class="h-12 object-contain" />
+                <img src="${project.logo}" alt="Logo" class="h-12 object-contain" />
               </span>
             </div>
 
             <div class="flex items-center">
               <div class="flex items-center">
-                ${getStarIcons(project.stars)}
-                <p class="sr-only">${project.stars} out of 5 stars</p>
+                ${getStarIcons(project.level)}
+                <p class="sr-only">${project.level} out of 5 stars</p>
                 <a class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">Level</a>
               </div>
             </div>
@@ -202,7 +195,7 @@ const projects = [
 
           <div class="pt-0">
           
-            ${project.programmingLanguage === 'MS Excel' ? 
+            ${project.tool === 1 ? 
       `<p class="flex items-center  py-0">
          <svg class="w-7 h-7 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="transparent" stroke="green"></rect>
@@ -234,7 +227,7 @@ const projects = [
 
           <p class="text-sm mb-4">Key skills that you will gain:</p>
           <div class="text-sm">
-            ${getSkills(project.skills)}
+            ${getSkills(project.points)}
             <a href="${project.title}/view"><button class="w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md">View Project</button></a>
           </div>
         `;
@@ -303,7 +296,7 @@ const projects = [
     }
 
     // Call the function to create project cards
-    generateProjectCards();
+    
 
     function updateCardLayout() {
   const screenWidth = window.innerWidth;
@@ -328,3 +321,13 @@ updateCardLayout();
 
 // Add event listener to update card layout when window is resized
 window.addEventListener("resize", updateCardLayout);
+
+fetch('/ProjectsData')
+  .then(response => response.json())
+  .then(projectsData => {
+    console.log(projectsData);
+    generateProjectCards(projectsData);
+  })
+  .catch(error => {
+    console.error('Error fetching projects data:', error);
+  });

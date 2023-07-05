@@ -163,7 +163,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">250</span>
+                            <span class="block text-2xl font-bold">{{credits}}</span>
                             <span class="block text-gray-500">Total credits</span>
                         </div>
                     </div>
@@ -202,7 +202,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">93%</span>
+                            <span class="block text-2xl font-bold">{{accuracy}}%</span>
                             <span class="block text-gray-500">Accuracy</span>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">42/950</span>
+                            <span class="block text-2xl font-bold">{{rank}}/{{total_users}}</span>
                             <span class="block text-gray-500">Rank</span>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">139</span>
+                            <span class="block text-2xl font-bold">{{total_duration}} hrs </span>
                             <span class="block text-gray-500">Duration completed</span>
                         </div>
                     </div>
@@ -266,49 +266,29 @@
                         </div>
                         <div class="overflow-y-auto" style="max-height: 24rem;">
                             <ul class="p-6 space-y-6">
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Annette Watson profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Excel Pivot Table</span>
-                                    <span class="ml-auto font-semibold">+40</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Calvin Steward profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Music Player</span>
-                                    <span class="ml-auto font-semibold">+60</span>
-                                </li>
-                                
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">JAVA Developement</span>
-                                    <span class="ml-auto font-semibold">+50</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">Face Detection Tool</span>
-                                    <span class="ml-auto font-semibold">+50</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                                        <img src="{% static 'daksha/assets/project.png' %}" alt="Ralph Richards profile picture" />
-                                    </div>
-                                    <span class="text-gray-600">E-commerce App</span>
-                                    <span class="ml-auto font-semibold">+80</span>
-                                </li>
+                                {% for x in project_list %}
+                                    <li class="flex items-center">
+                                       
+                                        <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                                            <img src="{% static 'daksha/assets/project.png' %}" alt="project picture" />
+                                        </div>
+                                        <a href="{{x.title}}/view">
+                                            <span class="text-gray-600">{{x.title}}</span>
+
+                                       </a>    
+                                       <a href="{{x.title}}/view">
+                                            <span class="text-gray-600">+{{x.credits}}</span>
+
+                                       </a>  
+
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
                             <span>Recommended projects</span>
                             <button type="button" class="inline-flex justify-center rounded-md px-1 -mr-1 bg-white text-xs leading-5 font-medium text-gray-500 hover:text-gray-600" id="options-menu" aria-haspopup="true" aria-expanded="true">
                                 Credits
-                                
                             </button> 
                            
                         </div>

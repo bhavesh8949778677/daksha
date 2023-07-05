@@ -17,7 +17,7 @@ from django.core import serializers
 import json
 from django.conf import settings
 import os
-
+import datetime
 
 class SubmissionForm(forms.ModelForm):
     class Meta:
@@ -36,11 +36,13 @@ def index(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("Dashboard"))
     return render(request, "daksha/index.html")
+
 @login_required
 def projectsData(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
     projects = Project.objects.all()
     project_data = []
-    
     for project in projects:
         points = [point.name for point in project.points.all()]
         project_dict = {
@@ -50,6 +52,8 @@ def projectsData(request):
             'skills_req': project.skills_req,
             'credits': project.credits,
             'level': project.level,
+            'category': project.category,
+            'tool': project.tool,
             # 'pdf': project.pdf.url,
             'logo': project.logo.url,
             'points': points
@@ -145,11 +149,44 @@ def activate_account(request, uidb64, token):
 def Dashboard(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
-    credits = request.user.profile.credits
+    submissions = Submission.objects.filter(user=request.user).order_by('submission_time')
+    # credits = [0,]
+    total_credits = 0
+    credits = 0
+    total_duration = 0
+    projects = []
+    for submission in submissions:
+        credits+= submission.got_credits
+        total_credits+= submission.project.credits
+        total_duration+=submission.project.duration
+        projects.append({'title':submission.project.title,'credits':submission.got_credits})
+    request.user.profile.credits = credits
+    x = User.objects.all()
+    total_users = len(x)
+    print(total_users)
+    print(projects)
+    print(request.user.profile.rank)
+    users = Profile.objects.all()
+    count = 0
+    for x in users:
+        if x.credits >total_credits:
+            count+=1
+    request.user.profile.rank = 1+count
+    if (total_credits==0):
+        accuracy = "NA"
+    else:
+        accuracy = (credits/total_credits)*100
+
     return render(request, "daksha/Dashboard.html",{
         'username' : request.user.username,
         'email': request.user.email,
         'credits': credits,
+        'project_list': projects,
+        'rank': request.user.profile.rank,
+        'total_credits': total_credits,
+        'total_duration': total_duration,
+        'accuracy': accuracy,
+        'total_users': total_users
     })
 
 def Projects(request):
@@ -210,6 +247,7 @@ def showProject(request,title):
             sb.files = file
             sb.user = request.user
             sb.project = project
+            sb.submission_time = datetime.datetime.now()
             sb.save()
             return render(request, 'daksha/view_project.html',{
             'forms': form,
