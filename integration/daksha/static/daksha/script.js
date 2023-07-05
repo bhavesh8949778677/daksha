@@ -75,7 +75,7 @@ const projects = [
 
             <div class="flex items-center">
               <span class="uppercase px-3 py-1  text-indigo-900 rounded-2xl text-xs">
-                <img src="${project.companyLogo}" alt="Logo" class="h-8 object-contain" />
+                <img src="${project.companyLogo}" alt="Logo" class="h-12 object-contain" />
               </span>
             </div>
 

@@ -55,7 +55,11 @@ const chart = new Chart(document.getElementById("myChart"), {
     ],
   },
   options: {
+    maintainAspectRatio:false,
+    // responsive: true,
+
     plugins: {
+      
       legend: {
         display: false,
       },
@@ -87,7 +91,7 @@ const chart = new Chart(document.getElementById("myChart"), {
             yScaleID: "y",
             xMin: "January",
             xMax: "Dec",
-            backgroundColor: "RGB(40, 255, 87, 0.3)", // Red background color
+            backgroundColor: "RGB(40, 255, 87, 0.4)", // Red background color
             borderWidth: 0,
             yMin: 0,
             yMax: 300, // Specify the range of the y-axis
@@ -99,7 +103,7 @@ const chart = new Chart(document.getElementById("myChart"), {
             yScaleID: "y",
             xMin: "January",
             xMax: "Dec",
-            backgroundColor: "rgba(0, 0, 255, 0.3)", // Blue background color
+            backgroundColor: "rgba(0, 0, 255, 0.4)", // Blue background color
             borderWidth: 0,
             yMin: 300,
             yMax: 500, // Specify the range of the y-axis
@@ -111,7 +115,7 @@ const chart = new Chart(document.getElementById("myChart"), {
             yScaleID: "y",
             xMin: "January",
             xMax: "Dec",
-            backgroundColor: "rgb(255, 140, 0,0.3)", // Green background color
+            backgroundColor: "rgb(255, 140, 0,0.4)", // Green background color
             borderWidth: 0,
             yMin: 500,
             yMax: 650, // Specify the range of the y-axis
@@ -123,7 +127,7 @@ const chart = new Chart(document.getElementById("myChart"), {
             yScaleID: "y",
             xMin: "January",
             xMax: "Dec",
-            backgroundColor: "RGB(200, 0, 200, 0.3)", // Gray background color
+            backgroundColor: "RGB(200, 0, 200, 0.4)", // Gray background color
             borderWidth: 0,
             yMin: 650,
             yMax: 750, // Specify the range of the y-axis
@@ -135,7 +139,7 @@ const chart = new Chart(document.getElementById("myChart"), {
             yScaleID: "y",
             xMin: "January",
             xMax: "Dec",
-            backgroundColor: "rgba(255, 0, 100, 0.3)", // Blue-green background color
+            backgroundColor: "rgba(255, 0, 100, 0.4)", // Blue-green background color
             borderWidth: 0,
             yMin: 750,
             yMax: 800, // Specify the range of the y-axis
@@ -152,12 +156,18 @@ const chart = new Chart(document.getElementById("myChart"), {
           display: true,
           text: "Month", // Title for the x-axis
         },
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)", // Adjust the color of the x-axis grid lines
+        },
       },
       y: {
         display: true,
         title: {
           display: true,
           text: "Credits", // Title for the y-axis
+        },
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)", // Adjust the color of the x-axis grid lines
         },
         suggestedMax: 800, // Adjust the suggested maximum value for the y-axis
       },

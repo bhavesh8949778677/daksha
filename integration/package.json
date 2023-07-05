@@ -1,5 +1,28 @@
 {
   "dependencies": {
     "chart.js": "^4.3.0"
-  }
+  },
+  "name": "integration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "scripts": {
+    "watch:index": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/landing.css --watch",
+    "watch:login": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/log.css --watch",
+    "watch:Projects": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/pro.css --watch",
+    "watch:Catalyst": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/cat.css --watch",
+    "watch:dashboard": "postcss ./src/css/tailwind.css -o ./daksha/static/daksha/dash.css --watch"
+
+
+
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

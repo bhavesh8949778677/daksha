@@ -32,79 +32,6 @@
             });
 
 
-// Array of project data (example)
-// const projectsData = [
-//   {
-//     category: "Machine Learning",
-//     title: "Building a recommender system",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   {
-//     category: "Machine Learning",
-//     title: "Another project",
-//     description: "Lorem ipsum dolor, sit amet consectetur adipisicing.",
-//     points: [
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor.",
-//       "Lorem, ipsum dolor."
-//     ]
-//   },
-//   // Add more project objects as needed
 // ];
 // const projectsData = fetch('/ProjectsData')
 
@@ -259,7 +186,7 @@ const projects = [
 
             <div class="flex items-center">
               <span class="uppercase px-3 py-1  text-indigo-900 rounded-2xl text-xs">
-                <img src="${project.companyLogo}" alt="Logo" class="h-8 object-contain" />
+                <img src="${project.companyLogo}" alt="Logo" class="h-12 object-contain" />
               </span>
             </div>
 

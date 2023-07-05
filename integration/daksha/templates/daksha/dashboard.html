@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Daksha</title>
-        <link href="{% static 'daksha/dashboard.css' %}" rel="stylesheet" />
+        <link href="{% static 'daksha/dash.css' %}" rel="stylesheet" />
         <script src="{% static 'daksha/chart.umd.js' %}"></script>
         <script src="{% static 'daksha/chartjs-plugin-annotation.min.js' %}"></script>
         <link rel="icon" type="image/png" href="{%static 'daksha/assets/main_logo_small.png'%}"/>
@@ -45,6 +45,7 @@
             .mobile-menu a:hover {
                 background-color: rgba(0, 0, 0, 0.1);
             }
+            
         </style>
     </head>
 
@@ -214,24 +215,11 @@
                             <div class="flex justify-center h-full">
                                 <div class="w-full">
                                     <div class="justify-between h-full">
-                                        <div class="mt-0">
-                                            <canvas id="myChart" role="img" aria-label="line graph to show selling overview in terms of months and numbers"></canvas>
-                                            <!-- <div class="w-full bg-neutral-200 dark:bg-neutral-600">
-                                                <div class="relative h-4 bg-neutral-400">
-                                                    <div id="newbie" class="absolute top-0 bottom-0 bg-red-400 flex items-center pl-2 pr-1 overflow-hidden">
-                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Newbie</span>
-                                                    </div>
-                                                    <div id="pupil" class="absolute top-0 bottom-0 bg-yellow-400 flex items-center pl-2 pr-1 overflow-hidden">
-                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Pupil</span>
-                                                    </div>
-                                                    <div id="specialist" class="absolute top-0 bottom-0 bg-green-400 flex items-center pl-2 pr-1 overflow-hidden">
-                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Specialist</span>
-                                                    </div>
-                                                    <div id="master" class="absolute top-0 bottom-0 bg-blue-400 flex items-center pl-2 pr-1 overflow-hidden">
-                                                        <span class="whitespace-nowrap overflow-hidden text-overflow-ellipsis text-xs">Master</span>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                        <div class="mt-0 min-h-full">
+                                            <div class="relative lg:w-full h-[300px] w-[580px]">
+                                                <canvas id="myChart"  role="img" aria-label="line graph to show selling overview in terms of months and numbers"></canvas>    
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
