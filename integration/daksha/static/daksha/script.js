@@ -235,3 +235,52 @@ function toggleNavigationColor() {
     // Event listener for scroll events
     window.addEventListener('scroll', toggleNavigationColor);
 
+    document.addEventListener('touchmove', function (event) {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    }, { passive: false });
+    
+    // Prevent pinch-to-zoom on touch devices
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    });
+var xDown = null;
+    var yDown = null;
+
+    function handleTouchStart(event) {
+      xDown = event.touches[0].clientX;
+      yDown = event.touches[0].clientY;
+    }
+
+    function handleTouchMove(event) {
+      if (!xDown || !yDown) {
+        return;
+      }
+
+      var xDiff = xDown - event.touches[0].clientX;
+      var yDiff = yDown - event.touches[0].clientY;
+
+      // Check if horizontal swipe distance is greater than vertical swipe distance
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        event.preventDefault();
+
+        // Adjust the horizontal scroll speed
+        var scrollSpeed = 0.5; // Increase this value for slower scrolling
+
+        // Scroll the page horizontally
+        window.scrollBy(xDiff * scrollSpeed, 0);
+
+        // Reset the starting coordinates
+        xDown = event.touches[0].clientX;
+        yDown = event.touches[0].clientY;
+      } else {
+        // Allow vertical scrolling
+        xDown = null;
+        yDown = null;
+      }
+    }
+
+    // Attach touch event listeners
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
