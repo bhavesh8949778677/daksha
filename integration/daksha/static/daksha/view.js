@@ -57,6 +57,7 @@
           uploadText.textContent = "Click to upload ZIP file";
         }
       });
+      
       // closeButton_submit.addEventListener("click", function() {
       //   alertContainer.style.display = "none";
       //   alert.style.display = "none";

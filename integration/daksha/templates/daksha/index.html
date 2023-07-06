@@ -21,10 +21,15 @@
             .pl-1 {
                 padding-left: 0.25rem;
             }
+            .scrolled {
+        /* Add your desired styles for the scrolled state */
+        background-color: #111827;
+        /* Add any other styles */
+    }
         </style>
     </head>
     <body>
-        <header class="fixed w-full z-10 bg-gray-900 transition-all">
+        <header id="header" class="fixed w-full z-10 bg-transparent transition-all backdrop-filter backdrop-blur-lg backdrop-opacity-50">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="{% url 'index' %}" class="-m-1.5 p-1.5">
@@ -113,18 +118,18 @@
             <div class="relative isolate px-6 pt-14 lg:px-8">
                 <div class="mx-auto max-w-2xl py-20 sm:py-20 lg:py-24">
                     <div class="text-center">
-                        <h1 class="text-4xl font-bold tracking-tight text-gray-300 sm:text-6xl">Joblancer</h1>
-                        <p class="mt-6 text-xl leading-8 text-gray-300">
+                        <h1 class="text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl">Joblancer</h1>
+                        <p class="mt-6 text-xl leading-8 text-gray-100">
                             Everyone deserves a chance to succeed. We empower youth through hands-on experience, self-assessments, and real projects with top firms leading to job opportunities to help achieve their dreams.
                         </p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <a
                                 href="/register"
-                                class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Get started
                             </a>
-                            <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-sm font-semibold leading-6 text-gray-300"> Learn more <span aria-hidden="true">&rarr;</span> </a>
+                            <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-base font-semibold leading-6 text-gray-300"> Learn more <span aria-hidden="true">&rarr;</span> </a>
                         </div>
                     </div>
                 </div>
@@ -138,70 +143,56 @@
                 <div class="max-w-[1240px] mx-auto">
                     <div class="text-center">
                         <h2 id="information" class="text-3xl font-bold text-gray-950">Empowering Innovation, Transforming Industries</h2>
-                        <p class="text-lg py-6 text-gray-500">Collaborating with industry leaders for mutual growth, innovation, and success.</p>
+                        <p class="text-lg py-6 text-gray-600">Collaborating with industry leaders for mutual growth, innovation, and success.</p>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-1 px-2 text-center">
-                        <div class="border py-8 rounded-xl">
-                            <p class="text-4xl font-bold text-indigo-600">2000</p>
-                            <p class="text-gray-400 mt-2">Individuals upskilled</p>
+                    <div class="grid md:grid-cols-3 gap-4  px-4 text-center">
+                        <div class="border py-8 rounded-xl bg-indigo-100">
+                            <p class="text-4xl font-bold  text-indigo-600">2000</p>
+                            <p class="text-gray-600 mt-2 font-medium text-lg">Individuals upskilled</p>
                         </div>
-                        <div class="border py-8 rounded-xl">
-                            <p class="text-4xl font-bold text-indigo-600">1000+</p>
-                            <p class="text-gray-400 mt-2">Work opportunities created</p>
+                        <div class="border py-8 rounded-xl bg-indigo-100 ">
+                            <p class="text-4xl font-bold  text-indigo-600">1000+</p>
+                            <p class="text-gray-600 mt-2 font-medium text-lg">Work opportunities created</p>
                         </div>
-                        <div class="border py-8 rounded-xl">
+                        <div class="border py-8 rounded-xl bg-indigo-100 ">
                             <p class="text-4xl font-bold text-indigo-600">10 Lakhs</p>
-                            <p class="text-gray-400 mt-2">Income generated per month</p>
+                            <p class="text-gray-600 mt-2 text-lg font-medium">Income generated per month</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- this is the code for the partners section -->
-        <div class="bg-white mb-10 py-6 sm:py-10 md:py-10 lg:py-10">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto mt-10 grid max-w-lg gap-x-8 gap-y-10 sm:max-w-xl sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-4 md:grid-cols-2">
-                    <div class="flex justify-center items-center">
-                        <img
-                            class="lg:max-h-15 lg:w-full lg:object-contain md:max-h-10 md:w-full md:object-contain sm:max-h-8 sm:w-full sm:object-contain"
-                            src="{% static 'daksha/assets/comp-2.png' %}"
-                            alt="Reform"
-                            width="131"
-                            height="40"
-                        />
-                    </div>
+       <section class="py-10 bg-white sm:py-16 lg:py-24">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        
 
-                    <div class="flex justify-center items-center">
-                        <img
-                            class="lg:max-h-15 lg:w-full lg:object-contain md:max-h-10 md:w-full md:object-contain sm:max-h-8 sm:w-full sm:object-contain"
-                            src="{% static 'daksha/assets/cheque.png' %}"
-                            alt="Reform"
-                            width="131"
-                            height="40"
-                        />
-                    </div>
-                    <div class="flex justify-center items-center">
-                        <img
-                            class="lg:max-h-15 lg:w-full lg:object-contain md:max-h-10 md:w-full md:object-contain sm:max-h-8 sm:w-full sm:object-contain"
-                            src="{% static 'daksha/assets/comp-3.png' %}"
-                            alt="SavvyCal"
-                            width="131"
-                            height="40"
-                        />
-                    </div>
-                    <div class="flex justify-center items-center">
-                        <img
-                            class="lg:max-h-15 lg:w-full lg:object-contain md:max-h-10 md:w-full md:object-contain sm:max-h-8 sm:w-full sm:object-contain"
-                            src="{% static 'daksha/assets/ibm-logo.webp' %}"
-                            alt="Transistor"
-                            width="131"
-                            height="40"
-                        />
-                    </div>
-                </div>
+        <div class="grid items-center max-w-full grid-cols-2 mx-auto mt-12 md:mt-20 md:grid-cols-4 gap-x-15 gap-y-16">
+            <div>
+                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/cheque.png' %}" alt="" />
             </div>
+
+            <div>
+                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/comp-2.png' %}" alt="" />
+            </div>
+
+            <div>
+                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/comp-3.png' %}" alt="" />
+            </div>
+
+            <div>
+                <img class="object-contain w-full mx-auto h-12" src="{% static 'daksha/assets/ibm-logo.webp' %}" alt="" />
+            </div>
+
+            
+
+            
         </div>
+
+        
+    </div>
+</section>
+
 
         <!-- project  -->
         <div id="projects" name="projects" class="w-full mt-30">
@@ -223,9 +214,9 @@
             <div class="max-w-[1240px] mx-auto text-white relative">
                 <div class="px-4 py-12">
                     <h2 class="text-2xl pt-8 text-gray-900 uppercase text-center">Hackathons</h2>
-                    <h3 class="text-3xl font-bold py-6 text-center text-gray-800">Unleash Your Creativity, Compete, and Win!</h3>
+                    <h3 class="text-3xl font-bold py-4 text-center text-gray-800">Unleash Your Creativity, Compete, and Win!</h3>
                     <div class="lg:w-1/2 mx-auto sm:w-2/3">
-                        <p class="py-4 text-lg text-gray-800 text-center">Engage in Our Thrilling Hackathon to Showcase your Skills, Solve Challenges, and Create Cutting-edge Solutions for Real-world Problems</p>
+                        <p class="py-2 text-lg text-gray-800 text-center">Engage in Our Thrilling Hackathon to Showcase your Skills, Solve Challenges, and Create Cutting-edge Solutions for Real-world Problems</p>
                     </div>
                 </div>
 
@@ -282,11 +273,15 @@
                             <div class="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
                                 <div class="flex justify-center">
                                     <div class="text-center">
-                                        <h2 class="text-3xl font-bold sm:text-4xl text-gray-200">Catalyst-Nurture</h2>
-                                        <p class="mt-4 text-gray-300 text-lg sm:w-[500px] mx-auto px-4 sm:px-0">
-                                            We initiated a cohort program where we onboarded a selected group of individuals. We conducted primary research, conversed with the students about their proficiency level, and aligned our
-                                            bootcamp, Catalyst, with their needs and capabilities.
-                                        </p>
+                                        <h3 class="text-3xl font-bold py-6 text-center text-gray-200">Catalyst-Nurture</h3>
+                    <div class="lg:w-1/2 mx-auto sm:w-2/3">
+                        <p class="py-4 text-lg text-gray-200 text-center">We initiated a cohort program where we onboarded a selected group of individuals. We conducted primary research, conversed with the students about their proficiency level, and aligned our
+                                            bootcamp, Catalyst, with their needs and capabilities.</p>
+                    </div>
+                                        <!-- <h2 class="text-3xl font-bold sm:text-4xl text-gray-200"></h2>
+                                        <p class="mt-4 text-gray-300 text-lg sm:w-[550px] mx-auto px-4 sm:px-0">
+                                            
+                                        </p> -->
                                         <p class="mt-4 text-gray-600 text-base"></p>
                                         <div class="mt-8 flex justify-center">
                                             <a href="{% url 'Catalyst' %}" class="inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring">
@@ -423,7 +418,13 @@
                             <ul class="mt-8 space-y-4 text-sm">
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Company History
+                                        Our Mission 
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
+                                        Our Journey
                                     </a>
                                 </li>
 
@@ -435,20 +436,14 @@
 
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Employee Handbook
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Careers
+                                    
                                     </a>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="text-center sm:text-left">
-                            <p class="text-lg font-medium text-gray-200">Our Services</p>
+                            <p class="text-lg font-medium text-gray-200">Our Projects</p>
 
                             <ul class="mt-8 space-y-4 text-sm">
                                 <li>
@@ -489,7 +484,7 @@
 
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Support
+                                        
                                     </a>
                                 </li>
                                 <li>
@@ -512,7 +507,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
 
-                                        <span class="flex-1 text-gray-200">john@doe.com</span>
+                                        <span class="flex-1 text-gray-200">dakshaiitd@gamil.com</span>
                                     </a>
                                 </li>
 
@@ -526,7 +521,7 @@
                                             />
                                         </svg>
 
-                                        <span class="flex-1 text-gray-200">0123456789</span>
+                                        <span class="flex-1 text-gray-200">+91-8208559099</span>
                                     </a>
                                 </li>
 
@@ -537,7 +532,7 @@
                                     </svg>
 
                                     <address class="-mt-0.5 flex-1 not-italic text-gray-200">
-                                        213 Lane, London, United Kingdom
+                                        Hauz Khas, IIT Delhi New Delhi
                                     </address>
                                 </li>
                             </ul>

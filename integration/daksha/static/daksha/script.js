@@ -70,7 +70,7 @@ const projects = [
 // Add category section
         
         card.innerHTML = `
-          <div class="bg-indigo-300 text-gray-900 px-0  flex justify-center py-1 rounded-tl-none rounded-tr-none rounded-b-md mb-6  ">${project.category}</div>
+          <div class="bg-indigo-200 text-gray-900 px-0  flex justify-center py-1 rounded-tl-none rounded-tr-none rounded-b-md mb-6  ">${project.category}</div>
           <div class="mb-4 flex justify-between items-center">
 
             <div class="flex items-center">
@@ -217,4 +217,18 @@ updateCardLayout();
 
 // Add event listener to update card layout when window is resized
 window.addEventListener("resize", updateCardLayout);
+
+function toggleNavigationColor() {
+        var header = document.getElementById('header');
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollTop > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    // Event listener for scroll events
+    window.addEventListener('scroll', toggleNavigationColor);
 
