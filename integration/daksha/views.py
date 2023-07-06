@@ -200,7 +200,7 @@ def Dashboard(request):
     last_increment = 0
     if (len(credits_list)>1):
         last_increment =  credits_list[-1] - credits_list[-2]
-    elif (lend(credits_list)==1):
+    elif (len(credits_list)==1):
         last_increment = credits_list[0]
     else:
         last_increment = "NA"
