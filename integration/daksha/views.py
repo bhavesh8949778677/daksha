@@ -208,7 +208,7 @@ def Dashboard(request):
         latest_accuracy = (credits_list[-1]*100)//last_total_credits
     else:
         latest_accuracy = "NA"
-    return render(request, "daksha/Dashboard.html",{
+    return render(request, "daksha/dashboard.html",{
         'username' : request.user.username,
         'email': request.user.email,
         'credits': credits,
