@@ -120,3 +120,14 @@
       `;
     }
     generateStars(5);
+
+
+   fetch('/ProjectsData')
+  .then(response => response.json())
+  .then(projectsData => {
+    console.log(projectsData);
+    generateProjectCards(projectsData);
+  })
+  .catch(error => {
+    console.error('Error fetching projects data:', error);
+  });

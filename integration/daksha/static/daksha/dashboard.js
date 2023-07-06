@@ -33,6 +33,7 @@
 
 
 const data = [40, 100, 150, 200, 280];
+
 const badges = ["Newbie","Pupil", "Specialist", "Master","Grandmaster"];
 
 const chart = new Chart(document.getElementById("myChart"), {
@@ -201,36 +202,3 @@ const chart = new Chart(document.getElementById("myChart"), {
 
 
 
-// let fractionsFromBackend = {
-//     newbie: 0.5,
-//     pupil: 0.3,
-//     specialist: 0.1,
-//     master: 0.1
-//   };
-
-//   // Function to update the widths of progress sections
-//   function updateProgressSections() {
-//     const chart = document.getElementById('myChart');
-//     const chartWidth = chart.offsetWidth;
-//     const progressBar = document.querySelector('.bg-neutral-400');
-
-//     let previousWidth = 0;
-
-//     Object.entries(fractionsFromBackend).forEach(([label, fraction]) => {
-//       const section = document.getElementById(label);
-//       if (section) {
-//         const width = fraction * chartWidth;
-//         const marginLeft = previousWidth;
-
-//         section.style.width = `${width}px`;
-//         section.style.marginLeft = `${marginLeft}px`;
-
-//         previousWidth += width;
-//       }
-//     });
-//   }
-
-//   // Call the function to update the progress sections
-//   updateProgressSections();
-
-//   // Recalculate widths on window resize

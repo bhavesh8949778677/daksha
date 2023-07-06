@@ -17,6 +17,7 @@ from django.core import serializers
 import json
 from django.conf import settings
 import os
+import html
 import datetime
 
 class SubmissionForm(forms.ModelForm):
@@ -37,7 +38,7 @@ def index(request):
         return HttpResponseRedirect(reverse("Dashboard"))
     return render(request, "daksha/index.html")
 
-@login_required
+
 def projectsData(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
@@ -81,7 +82,7 @@ def login_view(request):
                 "message": "Invalid Credentials"
             })
     return render(request, "daksha/rlogin.html")
-@login_required
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
@@ -155,11 +156,31 @@ def Dashboard(request):
     credits = 0
     total_duration = 0
     projects = []
+    credits_list = []
+    time_list = []
+    Programming_credits = 0
+    Business_development_credits = 0
+    App_development_credits = 0
+    last_total_credits = 0
     for submission in submissions:
         credits+= submission.got_credits
+        if (submission.project.category == "Programming"):
+            Programming_credits+=submission.got_credits
+        elif (submission.project.category == "App Development"):
+            App_development_credits+=submission.got_credits
+        else:
+            Business_development_credits+=submission.got_credits
+        last_total_credits = submission.project.credits
+        time_list.append((submission.submission_time.strftime('%d%B%Y')))
+        credits_list.append(credits)
         total_credits+= submission.project.credits
         total_duration+=submission.project.duration
         projects.append({'title':submission.project.title,'credits':submission.got_credits})
+
+
+    Programming_credits = (Programming_credits*100)/credits
+    Business_development_credits = (Business_development_credits*100)/credits
+    App_development_credits = (App_development_credits*100)/credits
     request.user.profile.credits = credits
     x = User.objects.all()
     total_users = len(x)
@@ -175,8 +196,18 @@ def Dashboard(request):
     if (total_credits==0):
         accuracy = "NA"
     else:
-        accuracy = (credits/total_credits)*100
-
+        accuracy = ((credits*100)//total_credits)
+    last_increment = 0
+    if (len(credits_list)>1):
+        last_increment =  credits_list[-1] - credits_list[-2]
+    elif (lend(credits_list)==1):
+        last_increment = credits_list[0]
+    else:
+        last_increment = "NA"
+    if (len(credits_list)>0):
+        latest_accuracy = (credits_list[-1]*100)//last_total_credits
+    else:
+        latest_accuracy = "NA"
     return render(request, "daksha/Dashboard.html",{
         'username' : request.user.username,
         'email': request.user.email,
@@ -186,7 +217,14 @@ def Dashboard(request):
         'total_credits': total_credits,
         'total_duration': total_duration,
         'accuracy': accuracy,
-        'total_users': total_users
+        'total_users': total_users,
+        'credits_list': credits_list,
+        'time_list': time_list,
+        'Programming_credits': Programming_credits,
+        'Business_development_credits': Business_development_credits,
+        'App_development_credits':App_development_credits,
+        'last_increment': last_increment, 
+        'latest_accuracy': latest_accuracy,
     })
 
 def Projects(request):
@@ -213,8 +251,10 @@ def Hackathons(request):
 
 
 
-@login_required
+
 def showProject(request,title):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     form = SubmissionForm()
     if request.method == 'GET':
         project = Project.objects.filter(title = title)
@@ -316,3 +356,4 @@ def serve_submissions(request, filename, username):
 
 def Catalyst(request):
     return render(request, "daksha/Catalyst.html")
+

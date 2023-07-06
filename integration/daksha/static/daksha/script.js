@@ -27,7 +27,8 @@ const projects = [
         duration: "2 hours",
         credits: 10,
         category:"Business Development",
-        skills: ["Analyzing & summarize data", "Generating visual graphs from data"]
+        skills: ["Analyzing & summarize data", "Generating visual graphs from data"],
+        url:"/Excel for beginners : Pivot Tables/view"
       },
       {
         companyName: "Company A",
@@ -38,7 +39,8 @@ const projects = [
         duration: "15 hours",
         credits: 50,
         category:"Programming ",
-        skills: ["Application of Tkinter and Pygame", "In-built method mixer()" ]
+        skills: ["Application of Tkinter and Pygame", "In-built method mixer()" ],
+        url: "/Python programming - Music Player/view"
       },
       {
         companyName: "Company A",
@@ -49,7 +51,8 @@ const projects = [
         duration: "30 hours",
         category:"Programming",
         credits: 70,
-        skills: ["Eyewitness module", "Investigator and Admin module"]
+        skills: ["Eyewitness module", "Investigator and Admin module"],
+        url: "/Advanced JAVA development/view"
       },
       
       // Add more project data objects as needed
@@ -124,7 +127,7 @@ const projects = [
           <p class="text-sm mb-4">Key skills that you will gain:</p>
           <div class="text-sm">
             ${getSkills(project.skills)}
-            <button class="w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md">View Project</button>
+            <a href = "${project.url}"><button class="w-full py-4 my-4 text-white border bg-indigo-600 border-indigo-600 hover:bg-transparent hover:text-indigo-600 rounded-md">View Project</button></a>
           </div>
         `;
 

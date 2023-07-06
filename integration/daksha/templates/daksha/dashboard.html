@@ -174,20 +174,24 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">+80</span>
+                            <span class="block text-2xl font-bold">+{{last_increment}}</span>
                             <span class="block text-gray-500">Latest increment</span>
                         </div>
                     </div>
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
                         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-red-600 bg-red-100 rounded-full mr-6">
-                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-                            </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="11" fill="#000000" stroke="#000000" stroke-width="2" />
+  <circle cx="12" cy="12" r="9" fill="#36a2eb" />
+  <circle cx="12" cy="12" r="7" fill="#ff6384" />
+  <circle cx="12" cy="12" r="3" fill="#ffce58" />
+</svg>
+
                         </div>
                         <div>
-                            <span class="inline-block text-2xl font-bold">0%</span>
+                            <span class="inline-block text-2xl font-bold">{{latest_accuracy}}%</span>
                             <span class="inline-block text-xl text-gray-500 font-semibold"></span>
-                            <span class="block text-gray-500">you are skyrocketing</span>
+                            <span class="block text-gray-500">Latest Accuracy</span>
                         </div>
                     </div>
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -203,7 +207,7 @@
                         </div>
                         <div>
                             <span class="block text-2xl font-bold">{{accuracy}}%</span>
-                            <span class="block text-gray-500">Accuracy</span>
+                            <span class="block text-gray-500">Overall Accuracy</span>
                         </div>
                     </div>
                 </section>
@@ -326,6 +330,172 @@
                 </section>
             </main>
         </div>
-        <script src="{% static 'daksha/dashboard.js' %}"></script>
+        <script >
+                // Mobile menu button
+            const mobileMenuButton = document.querySelector(".mobile-menu-button");
+
+// Mobile menu content
+const mobileMenuContent = document.querySelector(".mobile-menu");
+
+// Toggle mobile menu
+mobileMenuButton.addEventListener("click", () => {
+    mobileMenuContent.classList.toggle("active");
+});
+
+// Close mobile menu when a menu item is clicked
+const mobileMenuLinks = document.querySelectorAll(".mobile-menu-content a");
+mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        mobileMenuContent.classList.remove("active");
+    });
+});
+
+// Close mobile menu when close button is clicked
+const closeButton = document.querySelector(".close-button");
+closeButton.addEventListener("click", () => {
+    mobileMenuContent.classList.remove("active");
+});
+
+// Hide mobile menu when clicking outside
+document.addEventListener("mouseup", (event) => {
+    const targetElement = event.target;
+    if (!targetElement.closest(".mobile-menu") && !targetElement.closest(".mobile-menu-button")) {
+        mobileMenuContent.classList.remove("active");
+    }
+});
+
+// console.log("{{credits_list}}");
+// console.log("{{time_list|safe}}");
+var time_list = new DOMParser().parseFromString("{{time_list}}", "text/html").body.textContent;
+var regex = /'([^']+)'/g;
+var matches = time_list.match(regex);
+var parsed_time_list = matches.map(match => match.slice(1, -1));
+console.log(parsed_time_list);
+time_list = parsed_time_list;
+// var array = JSON.parse(decodedString);
+// console.log(array); // Output: ["05July2023", "06July2023"]
+// console.log(Array.isArray(array)); // Output: true
+// const time_list = JSON.parse("{{time_list}}");
+
+// console.log(time_data)
+
+const data = JSON.parse("{{credits_list}}");
+
+const badges = ["Newbie","Pupil", "Specialist", "Master","Grandmaster"];
+const chart = new Chart(document.getElementById("myChart"), {
+  type: "line",
+  data: {
+    labels: time_list,
+    datasets: [
+      {
+        label: "Credits",
+        borderColor: "#4F46E5",
+        data: data,
+        fill: true,
+        pointBackgroundColor: "#0056b3",
+        borderWidth: "3",
+        pointBorderWidth: "4",
+        pointHoverRadius: "5",
+        pointHoverBorderWidth: "3",
+        pointHoverBorderColor: "#0056b3",
+      },
+    ],
+  },
+  options: {
+    maintainAspectRatio: false,
+    // responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          title: function (context) {
+            return "Month: " + context[0].label;
+          },
+          label: function (context) {
+            var index = context.dataIndex;
+            var credits = context.dataset.data[index];
+            // var badge = badges[index];
+            if (credits > 300) {
+              return "Credits: " + credits + " | Badge: " + badges[1];
+            } else {
+              return "Credits: " + credits + " | Badge: " + badges[0];
+            }
+          },
+        },
+      },
+      annotation: {
+        annotations: [
+          {
+            type: "box",
+            drawTime: "beforeDatasetsDraw",
+            xScaleID: "x",
+            yScaleID: "y",
+            xMin: time_list[0], // Set the first date in the time_list as xMin
+            xMax: time_list[time_list.length - 1], // Set the last date in the time_list as xMax
+            backgroundColor: "RGB(40, 255, 87, 0.4)", // Red background color
+            borderWidth: 0,
+            yMin: 0,
+            yMax: 300, // Specify the range of the y-axis
+          },
+          // Rest of the annotations...
+        ],
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: "Month", // Title for the x-axis
+        },
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)", // Adjust the color of the x-axis grid lines
+        },
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: "Credits", // Title for the y-axis
+        },
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)", // Adjust the color of the x-axis grid lines
+        },
+        suggestedMax: 800, // Adjust the suggested maximum value for the y-axis
+      },
+    },
+  },
+});
+
+
+var ctx = document.getElementById('myChart2').getContext('2d');
+console.log("{{App_development_credits}}");
+// Define the data for the pie chart
+console.log("{{Programming_credits}}");
+console.log("{{Business_development_credits}}");
+var dat = {
+labels: ['Programming', 'App Development ', 'Business Development'],
+datasets: [{
+data: ["{{Programming_credits}}", "{{App_development_credits}}","{{Business_development_credits}}" ],
+backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+}]
+};
+
+// Create the pie chart
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: dat,
+options: {
+responsive: true,
+maintainAspectRatio: false
+}
+});
+
+
+
+
+        </script>
     </body>
 </html>
