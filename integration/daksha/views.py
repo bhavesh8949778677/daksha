@@ -177,10 +177,14 @@ def Dashboard(request):
         total_duration+=submission.project.duration
         projects.append({'title':submission.project.title,'credits':submission.got_credits})
 
-
-    Programming_credits = (Programming_credits*100)/credits
-    Business_development_credits = (Business_development_credits*100)/credits
-    App_development_credits = (App_development_credits*100)/credits
+    if credits!=0:
+        Programming_credits = (Programming_credits*100)/credits
+        Business_development_credits = (Business_development_credits*100)/credits
+        App_development_credits = (App_development_credits*100)/credits
+    else:
+        Programming_credits = 0
+        Business_development_credits = 0
+        App_development_credits = 0 
     request.user.profile.credits = credits
     x = User.objects.all()
     total_users = len(x)
