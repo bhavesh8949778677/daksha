@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-w$zxn*0jldrci4q_*r+h3t286r!&&apr^@4li(s&z#2-5*-3!u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['3.109.182.199']
 
 
 # Application definition
@@ -133,6 +133,5 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'hiringdaksha@gmail.com'
 EMAIL_HOST_PASSWORD = 'lrxwtneyicwlyhrr'
 
-ALLOWED_HOSTS =[]
 import os
-MEDIA_ROOT = os.path.join('/Users/bhaveshgurnani/Desktop/daksha/media')
+MEDIA_ROOT = os.path.join('/media')
