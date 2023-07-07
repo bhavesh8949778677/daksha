@@ -284,10 +284,14 @@ def showProject(request,title):
     if request.method == 'POST':
         project = get_object_or_404(Project, title=title)
         sb = Submission.objects.filter(project=project, user=request.user).first()
-        if (sb == None):
-            sb = Submission() 
+        if sb:
+            if sb.files:
+                os.remove(sb.files.path)
+            sb.delete()
+
         file = request.FILES.get('file')
-        if file.size < 15*1024*1024:
+        if file!=None and file.size < 15*1024*1024:
+            sb = su
             sb.files = file
             sb.user = request.user
             sb.project = project
@@ -301,7 +305,7 @@ def showProject(request,title):
             'email': request.user.email,
             'credits': credits,
             'show': True,
-        })
+            })
         form = SubmissionForm()
         return render(request, 'daksha/view_project.html',{
             'forms': form,
