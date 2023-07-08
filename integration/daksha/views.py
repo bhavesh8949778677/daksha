@@ -291,7 +291,7 @@ def showProject(request,title):
 
         file = request.FILES.get('file')
         if file!=None and file.size < 15*1024*1024:
-            sb = su
+            sb = submission()
             sb.files = file
             sb.user = request.user
             sb.project = project
