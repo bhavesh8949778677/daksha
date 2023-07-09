@@ -33,7 +33,7 @@
         </style>
     </head>
     <body>
-        <header id="header" class="fixed w-full z-10 bg-transparent transition-all backdrop-filter backdrop-blur-lg backdrop-opacity-50">
+        <header id="header" class="fixed w-full z-10 bg-transparent transition-all ">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="{% url 'index' %}" class="-m-1.5 p-1.5">
@@ -60,7 +60,7 @@
                     <a href="#hackathons" class="text-base font-semibold leading-6 text-gray-100">Hackathons</a>
                     <a href="#Catalyst" class="text-base font-semibold leading-6 text-gray-100">Catalyst</a>
                     <div class="relative">
-                        <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-base font-semibold leading-6 text-gray-100">Enactus</a>
+                        <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-base font-semibold leading-6 text-gray-100">Enactus IITD</a>
                         <span class="absolute top-0 right-0 text-xs text-indigo-600 transform translate-y-[-50%] translate-x-[50%]">visit</span>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                                 <a href="#hackathons" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-100 hover:text-gray-900">Hackathons</a>
                                 <a href="#Catalyst" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-100 hover:text-gray-900">Catalyst</a>
                                 <div class="relative py-2">
-                                    <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-base font-semibold leading-6 text-gray-100">Enactus</a>
+                                    <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" class="text-base font-semibold leading-6 text-gray-100">Enactus IITD</a>
                                     <span class="absolute top-0 left-0 translate-x-10 text-xs text-indigo-600 transform">visit</span>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
 
         <div id="hero" class="relative bg-white flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img class="object-cover object-center w-full h-full" src="{%static 'daksha/assets/gr.png'%}" alt="Background Image" />
+                <img class="object-cover object-center w-full h-full" src="{%static 'daksha/assets/gr.jpg'%}" alt="Background Image" />
                 <div class="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -167,31 +167,29 @@
             </div>
         </div>
 
-       <section class="py-10 bg-white sm:py-16 lg:py-24">
+       <section class=" mb-10 bg-white sm:pb-10 lg:pb-20">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         
 
-        <div class="grid items-center max-w-full grid-cols-2 mx-auto mt-12 md:mt-20 md:grid-cols-4 gap-x-15 gap-y-16">
-            <div>
-                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/cheque.png' %}" alt="" />
-            </div>
+     <div class="grid items-center max-w-full grid-cols-2 mx-auto mt-12 md:mt-20 md:grid-cols-4 gap-x-15 gap-y-16">
+    <div>
+        <img class="object-contain w-full h-12 mx-auto " src="{% static 'daksha/assets/cheque.png' %}" alt="" />
+    </div>
 
-            <div>
-                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/comp-2.png' %}" alt="" />
-            </div>
+    <div>
+        <img class="object-contain w-full h-12 mx-auto " src="{% static 'daksha/assets/comp-2.png' %}" alt="" />
+    </div>
 
-            <div>
-                <img class="object-contain w-full h-10 mx-auto" src="{% static 'daksha/assets/comp-3.png' %}" alt="" />
-            </div>
+    <div>
+        <img class="object-contain w-full h-12 mx-auto" src="{% static 'daksha/assets/comp-3.png' %}" alt="" />
+    </div>
 
-            <div>
-                <img class="object-contain w-full mx-auto h-12" src="{% static 'daksha/assets/ibm-logo.webp' %}" alt="" />
-            </div>
+    <div>
+        <img class="object-contain w-full h-12 mx-auto" src="{% static 'daksha/assets/ibm-logo.png.jpg' %}" alt="" />
+    </div>
+</div>
 
-            
 
-            
-        </div>
 
         
     </div>
@@ -266,10 +264,11 @@
                 </div>
             </div>
         </div>
+
         <div class="text-gray-300" id="Catalyst">
             <div id="hackathons" name="support" class="relative w-full my-10">
                 <div class="w-full h-[1000px] bg-gray-800/90 absolute">
-                    <img class="w-full -z-10 h-full object-cover mix-blend-overlay" src="{% static 'daksha/assets/gr.png' %}" alt="/" />
+                    <img class="w-full -z-10 h-full object-cover mix-blend-overlay" src="{% static 'daksha/assets/catalyst.jpg' %}" alt="/" />
                 </div>
                 <div class="max-w-[1240px] mx-auto text-white relative">
                     <div class="px-4 py-20">
@@ -351,23 +350,26 @@
             </div>
         </section>
 
-        <footer class="bg-gray-900">
-            <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
-                <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+         <footer class="bg-gray-900">
+            <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 sm:justify-center">
+                <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 justify-center">
                     <div>
-                        <div class="flex justify-center text-gray-200 sm:justify-start">
+                        <div class="sm:flex justify-center text-gray-200 sm:justify-start">
                             <div class="flex justify-center items-center">
-                                <img class="max-h-12 w-auto object-contain" src="{%static 'daksha/assets/main_logo.png' %} " alt="Dakshya Logo" />
+                                <img class="h-10 w-auto object-contain" src="{%static 'daksha/assets/main_logo.png' %} " alt="Dakshya Logo" />
                             </div>
                         </div>
 
-                        <p class="mt-6 max-w-md text-center leading-relaxed text-gray-200 sm:max-w-xs sm:text-left">
-                            Enactus IIT Delhi is a student-led organization focused on creating social impact through entrepreneurial action
-                        </p>
+                        <p class="mt-6 flex justify-center  text-center leading-relaxed text-gray-200  sm:text-left">
+                        Project Daksha empowers underprivileged individuals (18-26) through experiential learning, connecting them to partner companies for project-based work and self-projects, fostering job opportunities.</p>
+
+
+
+
 
                         <ul class="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
-                            <li>
-                                <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
+                            <!-- <li>
+                                 <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
                                     <span class="sr-only">Facebook</span>
                                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path
@@ -377,10 +379,10 @@
                                         />
                                     </svg>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li>
-                                <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
+                                <a href="https://www.instagram.com/enactusiitdelhi/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
                                     <span class="sr-only">Instagram</span>
                                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path
@@ -392,24 +394,20 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
+                            <!-- <li>
+                                 <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
                                     <span class="sr-only">Twitter</span>
                                     <svg class="h-6 w-" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path
                                             d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
                                         />
                                     </svg>
-                                </a>
-                            </li>
+                                </a> 
+                            </li> -->
                             <li>
-                                <a href="/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
+                                <a href="https://www.linkedin.com/company/enactusiitdelhi/mycompany/" rel="noreferrer" target="_blank" class="text-gray-100 transition hover:text-gray-200">
                                     <span class="sr-only">LinkedIn</span>
-                                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M20.25,3H3.75A.75.75,0,0,0,3,3.75V20.25a.75.75,0,0,0,.75.75H20.25a.75.75,0,0,0,.75-.75V3.75A.75.75,0,0,0,20.25,3ZM7.5,19.5H5.25V10.875H7.5ZM6.375,9C5.56,9,4.875,8.315,4.875,7.5S5.56,6,6.375,6,7.875,6.685,7.875,7.5,7.19,9,6.375,9ZM19.5,19.5H17.25V14.25c0-1.125-.025-2.55-1.575-2.55-1.575,0-1.8,1.225-1.8,2.475V19.5H12V10.875H14.25v1.312h.038a3.136,3.136,0,0,1,2.825-1.55c3,0,3.55,1.975,3.55,4.537Z"
-                                        />
-                                    </svg>
+                                    <img src="{%static 'daksha/assets/linkedin-logo.png'%}" class="h-6 w-6">
                                 </a>
                             </li>
                         </ul>
@@ -420,17 +418,18 @@
                             <p class="text-lg font-medium text-gray-200">About Us</p>
 
                             <ul class="mt-8 space-y-4 text-sm">
-                                <li>
+                                <!-- down for now -->
+                                <!-- <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
                                         Our Mission 
                                     </a>
-                                </li>
+                                </li> -->
 
-                                <li>
+                                <!-- <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
                                         Our Journey
                                     </a>
-                                </li>
+                                </li> -->
 
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
@@ -439,8 +438,8 @@
                                 </li>
 
                                 <li>
-                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                    
+                                    <a class="text-gray-200 transition hover:text-gray-300" href="https://indiaeducationdiary.in/iit-delhi-indian-institute-of-technology-won-enactus-india-national-competition-2021/">
+                                        Newsletter
                                     </a>
                                 </li>
                             </ul>
@@ -464,13 +463,13 @@
 
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Marketing
+                                        App Development
                                     </a>
                                 </li>
 
                                 <li>
                                     <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        Google Ads
+                                        Business Development
                                     </a>
                                 </li>
                             </ul>
@@ -481,18 +480,14 @@
 
                             <ul class="mt-8 space-y-4 text-sm">
                                 <li>
-                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        FAQs
+                                    <a class="text-gray-200 transition hover:text-gray-300" target="_blank" href="https://forms.gle/hJCLDFED8q1L4Cr1A">
+                                        Feedback
                                     </a>
                                 </li>
 
+                                
                                 <li>
-                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
-                                        
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-gray-200 transition hover:text-gray-300" href="/">
+                                    <a class="text-gray-200 transition hover:text-gray-300" href="https://forms.gle/i4sKTBXd6twxQzn36" target="_blank">
                                         <span class="text-gray-200 transition hover:text-gray-300">
                                             Queries
                                         </span>
@@ -530,15 +525,17 @@
                                 </li>
 
                                 <li class="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
+                                            <a class="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end" target="_blank" href="https://www.bing.com/maps?mepi=24%7E%7ETopOfPage%7ELargeMapLink&ty=18&q=IIT+Delhi%2C+Delhi&satid=id.sid%3A71498280-4d9f-17e3-e405-d7e612526db1&vdpid=7408262022749487105&ppois=28.545000076293945_77.19222259521484_IIT+Delhi%2C+Delhi_%7E&cp=28.545091%7E77.207866&v=2&sV=1&FORM=MIRE&qpvt=google+maps+iit+delhi&lvl=14.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
 
-                                    <address class="-mt-0.5 flex-1 not-italic text-gray-200">
-                                        Hauz Khas, IIT Delhi New Delhi
-                                    </address>
-                                </li>
+                                            <address class="-mt-0.5 flex-1 not-italic text-gray-200">
+                                                Hauz Khas, IIT Delhi New Delhi
+                                            </address>
+                                            </a>
+                                        </li>
                             </ul>
                         </div>
                     </div>
@@ -549,7 +546,9 @@
                         <p class="text-sm text-gray-400">
                             <span class="block sm:inline">All rights reserved.</span>
 
-                            <a class="inline-block text-indigo-600 underline transition hover:text-indigo-600/75" href="/">
+
+                            <!-- down for now -->
+                            <!-- <a class="inline-block text-indigo-600 underline transition hover:text-indigo-600/75" href="/">
                                 Terms & Conditions
                             </a>
 
@@ -557,7 +556,7 @@
 
                             <a class="inline-block text-indigo-600 underline transition hover:text-indigo-600/75" href="/">
                                 Privacy Policy
-                            </a>
+                            </a> -->
                         </p>
 
                         <p class="mt-4 text-sm text-gray-400 sm:order-first sm:mt-0">
